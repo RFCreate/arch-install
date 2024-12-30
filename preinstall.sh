@@ -63,4 +63,4 @@ genfstab -U /mnt >> /mnt/etc/fstab
 cp /root/pacstrap-output.log /root/pacstrap-error.log /mnt
 
 # Add scripts to DISK
-curl -s --output-dir /mnt -O https://raw.githubusercontent.com/shyguyCreate/setup/main/install.sh
+curl -s --output-dir /mnt -O https://raw.githubusercontent.com/RFCreate/setup/main/install.sh

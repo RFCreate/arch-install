@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Script variables
-NEWUSER="shyguy"
+NEWUSER="user"
 XKB_MODEL="pc105"
 XKB_LAYOUT="latam"
 XKB_VARIANT="deadtilde"
@@ -37,7 +37,7 @@ if ! pacman -Q yay > /dev/null 2>&1; then
 fi
 
 # Install packages inside csv file
-curl -s -o /tmp/pkgs.csv.tmp https://raw.githubusercontent.com/shyguyCreate/setup/main/pkgs.csv
+curl -s -o /tmp/pkgs.csv.tmp https://raw.githubusercontent.com/RFCreate/setup/main/pkgs.csv
 tail -n +2 /tmp/pkgs.csv.tmp | cut -d ',' -f -2 > /tmp/pkgs.csv
 while IFS=, read -r tag program; do
     case "$tag" in
@@ -63,6 +63,7 @@ chown -c root:root /etc/doas.conf
 chmod -c 0400 /etc/doas.conf
 
 # https://wiki.archlinux.org/title/Uncomplicated_Firewall#Installation
+# Enable firewall
 systemctl --quiet disable iptables.service
 systemctl --quiet disable ip6tables.service
 systemctl --quiet enable ufw.service
@@ -127,7 +128,7 @@ EOF
 # https://wiki.archlinux.org/title/Dotfiles#Tracking_dotfiles_directly_with_Git
 # Copy dotfiles from repo to HOME
 runuser -l "$NEWUSER" << 'EOF'
-git clone -q --bare https://github.com/shyguyCreate/dotfiles.git "$HOME/.dotfiles" --depth 1
+git clone -q --bare https://github.com/RFCreate/dotfiles.git "$HOME/.dotfiles" --depth 1
 dotfiles(){ git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" $@; }
 dotfiles config --local status.showUntrackedFiles no
 cd "$HOME" && mkdir -p .dotfiles-backup

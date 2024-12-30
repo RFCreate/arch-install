@@ -52,7 +52,7 @@ mount "${USB}2" /mnt
 
 # Add script to storage partition
 echo "Adding preinstall script to USB..."
-curl -s --output-dir /mnt -O https://raw.githubusercontent.com/shyguyCreate/setup/main/preinstall.sh
+curl -s --output-dir /mnt -O https://raw.githubusercontent.com/RFCreate/setup/main/preinstall.sh
 
 # Umount storage partition
 umount /mnt

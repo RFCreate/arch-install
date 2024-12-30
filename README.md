@@ -8,7 +8,7 @@ Run the iso2usb script[^1] to copy the [ISO to a **USB**](https://wiki.archlinux
 <sub>**Note:** fill the USB and ISO variables for the script to run, mkfs.fat and mkfs.ext4 need to be installed, and additional commands are needed for [not UEFI systems](https://wiki.archlinux.org/title/USB_flash_installation_medium#Using_manual_formatting)</sub>
 
 ```
-curl -O https://raw.githubusercontent.com/shyguyCreate/setup/main/iso2usb.sh
+curl -O https://raw.githubusercontent.com/RFCreate/setup/main/iso2usb.sh
 USB=/dev/your_usb
 ISO=path/to/archlinux-version-x86_64.iso
 . ./iso2usb.sh
@@ -97,10 +97,10 @@ Run setup script[^1]<br>
 ---
 
 Set the user password<br>
-<sub>**Note:** may need change shyguy with your username</sub>
+<sub>**Note:** may need change _user_ with your username</sub>
 
 ```
-passwd shyguy
+passwd user
 ```
 
 [^1]: Script assumes that is running as root
