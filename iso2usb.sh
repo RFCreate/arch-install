@@ -14,16 +14,13 @@
 [ ! -f "$ISO" ] && echo "Error: ISO file does not exist, use ISO=path/to/archlinux-version-x86_64.iso" && return 1
 ! bsdtar -t -f "$ISO" > /dev/null 2>&1 && echo "Error: Unrecognized archive format, use ISO=path/to/archlinux-version-x86_64.iso" && return 1
 
-# Get iso size and add 1GB of safe space
-iso_size="$(numfmt --to=iec $(($(wc -c < "$ISO") + 100000000)))"
-
 # Remove partition signatures
 echo "Removing disk signatures..."
 wipefs --all -q "${USB}" || ! echo "Error ocurred!" || return 1
 
 # Partition usb
 echo "Partitioning disk..."
-printf "size=+%s,type=L,bootable,\nsize=+,type=L\n" "$iso_size" | sfdisk -q "${USB}" || ! echo "Error ocurred!" || return 1
+printf "size=+2G,type=L,bootable,\nsize=+,type=L\n" | sfdisk -q "${USB}" || ! echo "Error ocurred!" || return 1
 
 ############ ISO ############
 
@@ -38,7 +35,7 @@ mount "${USB}1" /mnt
 echo "Copying ISO to USB..."
 bsdtar -x -f "${ISO}" -C /mnt
 
-# Umount iso partition
+# Unmount iso partition
 umount /mnt
 
 ########## STORAGE ##########
@@ -50,9 +47,8 @@ mkfs.ext4 -q -F "${USB}2"
 # Mount storage partition
 mount "${USB}2" /mnt
 
-# Add script to storage partition
-echo "Adding preinstall script to USB..."
+# Download next script
 curl -s --output-dir /mnt -O https://raw.githubusercontent.com/RFCreate/setup/main/preinstall.sh
 
-# Umount storage partition
+# Unmount storage partition
 umount /mnt

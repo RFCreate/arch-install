@@ -1,11 +1,11 @@
 # Arch Installation
 
-Follow the [installation guide](https://wiki.archlinux.org/title/Installation_guide#Pre-installation) in the Arch wiki to download the [ISO](https://wiki.archlinux.org/title/Installation_guide#Acquire_an_installation_image) and [verify the signature](https://wiki.archlinux.org/title/Installation_guide#Verify_signature)
+Follow the [installation guide](https://wiki.archlinux.org/title/Installation_guide#Pre-installation) in the Arch wiki to download the [ISO file](https://wiki.archlinux.org/title/Installation_guide#Acquire_an_installation_image) and [verify the signature](https://wiki.archlinux.org/title/Installation_guide#Verify_signature)
 
 ---
 
-Run the iso2usb script[^1] to copy the [ISO to a **USB**](https://wiki.archlinux.org/title/USB_flash_installation_medium#Using_manual_formatting)<br>
-<sub>**Note:** fill the USB and ISO variables for the script to run, mkfs.fat and mkfs.ext4 need to be installed, and additional commands are needed for [not UEFI systems](https://wiki.archlinux.org/title/USB_flash_installation_medium#Using_manual_formatting)</sub>
+Run iso2usb script[^1] to copy ISO to USB ([only UEFI](https://wiki.archlinux.org/title/USB_flash_installation_medium#Using_manual_formatting))<br>
+<sub>**Note:** dependencies mkfs.fat and mkfs.ext4 needed</sub>
 
 ```
 curl -O https://raw.githubusercontent.com/RFCreate/setup/main/iso2usb.sh
@@ -35,7 +35,7 @@ iwctl
 ---
 
 Run pre-installation script[^1]<br>
-<sub>**Note:** fill the DISK variable for the script to run</sub>
+<sub>**Note:** download manually if you didn't run iso2usb script</sub>
 
 ```
 mkdir -p /root/usb
@@ -88,7 +88,7 @@ nmtui
 ---
 
 Run setup script[^1]<br>
-<sub>**Note:** modify script to change username</sub>
+<sub>**Note:** modify script to change your username</sub>
 
 ```
 . /setup.sh
@@ -97,10 +97,10 @@ Run setup script[^1]<br>
 ---
 
 Set the user password<br>
-<sub>**Note:** may need change _user_ with your username</sub>
+<sub>**Note:** may need change \<user\> with your username</sub>
 
 ```
 passwd user
 ```
 
-[^1]: Script assumes that is running as root
+[^1]: Script should run as root

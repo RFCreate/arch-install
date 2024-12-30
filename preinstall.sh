@@ -53,14 +53,11 @@ swapon "${DISK}2"
 # https://wiki.archlinux.org/title/Installation_guide#Install_essential_packages
 # Install packages in new system
 echo "Installing packages to new system..."
-pacstrap -K /mnt base base-devel linux linux-firmware linux-headers >> /root/pacstrap-output.log 2>> /root/pacstrap-error.log
+pacstrap -K /mnt base base-devel linux linux-firmware linux-headers >> /mnt/pacstrap-output.log 2>> /mnt/pacstrap-error.log
 
 # https://wiki.archlinux.org/title/Installation_guide#Fstab
 # Define disk partitions
 genfstab -U /mnt >> /mnt/etc/fstab
 
-# Copy logs to DISK
-cp /root/pacstrap-output.log /root/pacstrap-error.log /mnt
-
-# Add scripts to DISK
+# Download next script
 curl -s --output-dir /mnt -O https://raw.githubusercontent.com/RFCreate/setup/main/install.sh
