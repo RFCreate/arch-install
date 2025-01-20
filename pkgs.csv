@@ -27,7 +27,7 @@ A,shellcheck-bin,shell script linter,
 ,polkit-gnome,polkit agent,https://wiki.archlinux.org/title/Polkit#Authentication_agents
 ,libnotify,desktop notifications,https://wiki.archlinux.org/title/Desktop_notifications#Libnotify
 ,lxappearance-gtk3,GTK configuration tool,https://wiki.archlinux.org/title/GTK#Configuration_tools
-,cutefish-wallpapers,wallpaper pack,
+,starship,custom prompt,
 ,micro,terminal text editor,https://wiki.archlinux.org/title/List_of_applications/Documents#Text_editors
 ,libreoffice-still,office suite,https://wiki.archlinux.org/title/List_of_applications/Documents#Office_suites
 ,zathura,document viewer,https://wiki.archlinux.org/title/List_of_applications/Documents#PDF_and_DjVu
@@ -71,7 +71,6 @@ A,shellcheck-bin,shell script linter,
 ,zsh-autosuggestions,zsh history suggestions,
 ,zsh-syntax-highlighting,zsh syntax color,
 ,zsh-history-substring-search,zsh history search bindings,
-,starship,custom prompt,
 ,wireplumber,pipewire manager,
 ,pipewire-audio,audio support for pipewire,
 ,pipewire-alsa,alsa support for pipewire,
