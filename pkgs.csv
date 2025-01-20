@@ -26,8 +26,7 @@ A,shellcheck-bin,shell script linter,
 ,xclip,command line clipboard,https://wiki.archlinux.org/title/Clipboard#Tools
 ,polkit-gnome,polkit agent,https://wiki.archlinux.org/title/Polkit#Authentication_agents
 ,libnotify,desktop notifications,https://wiki.archlinux.org/title/Desktop_notifications#Libnotify
-,gnome-themes-extra,Adwaita and Adwaita-dark GTK theme,https://wiki.archlinux.org/title/GTK#Themes_supporting_GTK_2_and_GTK_3
-,lxappearance-gtk3,GTK 2 and GTK 3 configuration tool,https://wiki.archlinux.org/title/GTK#Configuration_tools
+,lxappearance-gtk3,GTK configuration tool,https://wiki.archlinux.org/title/GTK#Configuration_tools
 ,cutefish-wallpapers,wallpaper pack,
 ,micro,terminal text editor,https://wiki.archlinux.org/title/List_of_applications/Documents#Text_editors
 ,libreoffice-still,office suite,https://wiki.archlinux.org/title/List_of_applications/Documents#Office_suites
