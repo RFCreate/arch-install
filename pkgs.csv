@@ -2,11 +2,11 @@ Tag,Package,Description,URL
 ,terminus-font,console font,https://wiki.archlinux.org/title/Linux_console#Fonts
 ,ttf-dejavu,ttf-font provider,
 ,ttf-hack-nerd,ttf-font-nerd provider,
-,bat,cat alternative,https://wiki.archlinux.org/title/Core_utilities#cat_alternatives
-,fzf,command-line fuzzy finder,https://wiki.archlinux.org/title/Core_utilities#Interactive_filters
 ,man-db,man command,https://wiki.archlinux.org/title/Man_page#Installation
 ,man-pages,man pages,https://wiki.archlinux.org/title/Man_page#Installation
-,bash-completion,bash tab completion,
+,tldr,man page summaries,
+,bat,cat alternative,https://wiki.archlinux.org/title/Core_utilities#cat_alternatives
+,fzf,command-line fuzzy finder,https://wiki.archlinux.org/title/Core_utilities#Interactive_filters
 A,shellcheck-bin,shell script linter,
 ,shfmt,shell script formatter,
 ,zip,zip compression,https://wiki.archlinux.org/title/Archiving_and_compression#Archiving_and_compression
@@ -16,7 +16,11 @@ A,shellcheck-bin,shell script linter,
 ,usbutils,usb printer detection,https://wiki.archlinux.org/title/CUPS#USB
 ,avahi,wireless printer detection,https://wiki.archlinux.org/title/CUPS#Printer_discovery
 ,nss-mdns,hostname resolution,https://wiki.archlinux.org/title/Avahi#Hostname_resolution
-,tldr,man page summaries,
+,wireplumber,pipewire manager,
+,pipewire-audio,audio support for pipewire,
+,pipewire-alsa,alsa support for pipewire,
+,pipewire-pulse,pulseaudio support for pipewire,
+,pipewire-jack,jack support for pipewire,
 ,libinput,handle input devices,https://wiki.archlinux.org/title/Libinput#Installation
 ,xorg-server,display server,https://wiki.archlinux.org/title/Xorg#Installation
 ,xorg-xinit,startx and xinit command,https://wiki.archlinux.org/title/Xinit#Installation
@@ -67,15 +71,11 @@ A,shellcheck-bin,shell script linter,
 ,brightnessctl,control screen brightness,https://wiki.archlinux.org/title/List_of_applications/Utilities#Backlight_management
 ,redshift,screen color temperature adjuster,https://wiki.archlinux.org/title/List_of_applications/Utilities#Color_management
 ,system-config-printer,printer GUI,https://wiki.archlinux.org/title/List_of_applications/Utilities#Printer_management
+,bash-completion,bash tab completion,
 ,zsh-completions,zsh tab completion,
 ,zsh-autosuggestions,zsh history suggestions,
 ,zsh-syntax-highlighting,zsh syntax color,
 ,zsh-history-substring-search,zsh history search bindings,
-,wireplumber,pipewire manager,
-,pipewire-audio,audio support for pipewire,
-,pipewire-alsa,alsa support for pipewire,
-,pipewire-pulse,pulseaudio support for pipewire,
-,pipewire-jack,jack support for pipewire,
 ,network-manager-applet,GUI for NetworkManager,
 ,lightdm-gtk-greeter,GUI for lightdm,
 ,lightdm-gtk-greeter-settings,GUI settings for lightdm,
