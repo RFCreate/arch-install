@@ -121,51 +121,6 @@ Exec=convert %i[0] -background "#FFFFFF" -flatten -thumbnail %s %o
 MimeType=application/pdf;application/x-pdf;image/pdf;
 EOF
 
-# https://wiki.archlinux.org/title/PipeWire#Noticeable_audio_delay_or_audible_pop/crack_when_starting_playback
-# Stop audio cracking on playback caused by inactivity
-mkdir -p /etc/wireplumber/wireplumber.conf.d
-cat > /etc/wireplumber/wireplumber.conf.d/51-disable-suspension.conf << EOF
-monitor.alsa.rules = [
-  {
-    matches = [
-      {
-        # Matches all sources
-        node.name = "~alsa_input.*"
-      },
-      {
-        # Matches all sinks
-        node.name = "~alsa_output.*"
-      }
-    ]
-    actions = {
-      update-props = {
-        session.suspend-timeout-seconds = 0
-      }
-    }
-  }
-]
-# bluetooth devices
-monitor.bluez.rules = [
-  {
-    matches = [
-      {
-        # Matches all sources
-        node.name = "~bluez_input.*"
-      },
-      {
-        # Matches all sinks
-        node.name = "~bluez_output.*"
-      }
-    ]
-    actions = {
-      update-props = {
-        session.suspend-timeout-seconds = 0
-      }
-    }
-  }
-]
-EOF
-
 # https://wiki.archlinux.org/title/Command-line_shell#Changing_your_default_shell
 # Change new user default shell
 [ "$(getent passwd "$NEWUSER" | awk -F: '{print $NF}')" = "/usr/bin/zsh" ] || chsh -s /usr/bin/zsh "$NEWUSER" > /dev/null
