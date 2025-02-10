@@ -2,9 +2,6 @@
 
 # Script variables
 NEWUSER="user"
-XKB_MODEL="pc105"
-XKB_LAYOUT="latam"
-XKB_VARIANT="deadtilde"
 
 # https://wiki.archlinux.org/title/PC_speaker#Globally
 # Remove beep sound
@@ -83,33 +80,6 @@ systemctl --quiet disable systemd-resolved.service
 # Enable avahi with hostname resolution
 systemctl --quiet enable avahi-daemon.socket
 sed -i 's/hosts: mymachines resolve/hosts: mymachines mdns_minimal [NOTFOUND=return] resolve/' /etc/nsswitch.conf
-
-# https://wiki.archlinux.org/title/Libinput#Via_Xorg_configuration_file
-# Add tap to click, natural scrolling, and increased mouse speed
-mkdir -p /etc/X11/xorg.conf.d
-cat > /etc/X11/xorg.conf.d/30-touchpad.conf << EOF
-Section "InputClass"
-        Identifier "touchpad"
-        Driver "libinput"
-        MatchIsTouchpad "on"
-        Option "AccelSpeed" "0.25"
-        Option "NaturalScrolling" "on"
-        Option "Tapping" "on"
-EndSection
-EOF
-
-# https://wiki.archlinux.org/title/Xorg/Keyboard_configuration#Using_X_configuration_files
-# Change Xorg keyboard layout
-mkdir -p /etc/X11/xorg.conf.d
-cat > /etc/X11/xorg.conf.d/00-keyboard.conf << EOF
-Section "InputClass"
-        Identifier "system-keyboard"
-        MatchIsKeyboard "on"
-        Option "XkbModel" "$XKB_MODEL"
-        Option "XkbLayout" "$XKB_LAYOUT"
-        Option "XkbVariant" "$XKB_VARIANT"
-EndSection
-EOF
 
 # https://wiki.archlinux.org/title/File_manager_functionality#Use_PCManFM_to_get_thumbnails_for_other_file_types
 # Get thumbnail preview for PDFs
