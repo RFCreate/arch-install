@@ -24,8 +24,10 @@ A,shellcheck-bin,shell script linter,
 ,libinput,handle input devices,https://wiki.archlinux.org/title/Libinput#Installation
 ,xorg-server,display server,https://wiki.archlinux.org/title/Xorg#Installation
 ,xorg-xinit,startx and xinit command,https://wiki.archlinux.org/title/Xinit#Installation
-,xss-lock,trigger screen locker,https://wiki.archlinux.org/title/Session_lock#Xorg_triggers
 ,xorg-xset,screen saver timer,https://wiki.archlinux.org/title/Display_Power_Management_Signaling#Xorg
+,xss-lock,trigger screen locker,https://wiki.archlinux.org/title/Session_lock#Xorg_triggers
+,xorg-setxkbmap,configure keyboard dinamically,https://wiki.archlinux.org/title/Libinput#Via_xinput_on_Xorg
+,xorg-xinput,configure input devices dinamically,https://wiki.archlinux.org/title/Xorg/Keyboard_configuration#Using_setxkbmap
 ,xdotool,get active window id for maim,
 ,xclip,command line clipboard,https://wiki.archlinux.org/title/Clipboard#Tools
 ,polkit-gnome,polkit agent,https://wiki.archlinux.org/title/Polkit#Authentication_agents
