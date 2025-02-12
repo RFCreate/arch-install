@@ -52,7 +52,7 @@ A,shellcheck-bin,shell script linter,
 ,qtile,window manager,https://wiki.archlinux.org/title/List_of_applications/Other#Window_managers
 ,rofi,application launcher,https://wiki.archlinux.org/title/List_of_applications/Other#Application_launchers
 ,dunst,notification daemon,https://wiki.archlinux.org/title/List_of_applications/Other#Desktop_notifications
-,clipcat,clipboard manager,https://wiki.archlinux.org/title/List_of_applications/Other#Clipboard_managers
+A,rofi-greenclip,clipboard manager,https://wiki.archlinux.org/title/List_of_applications/Other#Clipboard_managers
 ,galculator,calculator,https://wiki.archlinux.org/title/List_of_applications/Science#Calculator
 ,ufw,firewall manager,https://wiki.archlinux.org/title/List_of_applications/Security#Firewall_management
 ,i3lock,screen locker,https://wiki.archlinux.org/title/List_of_applications/Security#Screen_lockers
@@ -80,7 +80,6 @@ A,shellcheck-bin,shell script linter,
 ,zsh-history-substring-search,zsh history search bindings,
 ,network-manager-applet,GUI for NetworkManager,
 ,lightdm-gtk-greeter,GUI for lightdm,
-,lightdm-gtk-greeter-settings,GUI settings for lightdm,
 ,alsa-utils,qtile volume widget,
 ,python-psutil,qtile system stats widgets,
 ,python-pyxdg,qtile icon search,
