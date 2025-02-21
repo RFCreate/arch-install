@@ -32,7 +32,6 @@ A,shellcheck-bin,shell script linter,
 ,xclip,command line clipboard,https://wiki.archlinux.org/title/Clipboard#Tools
 ,polkit-gnome,polkit agent,https://wiki.archlinux.org/title/Polkit#Authentication_agents
 ,libnotify,desktop notifications,https://wiki.archlinux.org/title/Desktop_notifications#Libnotify
-,lxappearance-gtk3,GTK configuration tool,https://wiki.archlinux.org/title/GTK#Configuration_tools
 ,starship,custom prompt,
 ,micro,terminal text editor,https://wiki.archlinux.org/title/List_of_applications/Documents#Text_editors
 ,libreoffice-still,office suite,https://wiki.archlinux.org/title/List_of_applications/Documents#Office_suites
@@ -48,7 +47,7 @@ A,shellcheck-bin,shell script linter,
 ,mpv,video player,https://wiki.archlinux.org/title/List_of_applications/Multimedia#Video_players
 ,shotcut,video editor,https://wiki.archlinux.org/title/List_of_applications/Multimedia#Video_editors
 ,obs-studio,screen recorder,https://wiki.archlinux.org/title/List_of_applications/Multimedia#Screencast
-,lightdm,display manager,https://wiki.archlinux.org/title/List_of_applications/Other#Display_managers
+,greetd-tuigreet,display manager,https://wiki.archlinux.org/title/List_of_applications/Other#Display_managers
 ,qtile,window manager,https://wiki.archlinux.org/title/List_of_applications/Other#Window_managers
 ,rofi,application launcher,https://wiki.archlinux.org/title/List_of_applications/Other#Application_launchers
 ,dunst,notification daemon,https://wiki.archlinux.org/title/List_of_applications/Other#Desktop_notifications
@@ -79,7 +78,6 @@ A,rofi-greenclip,clipboard manager,https://wiki.archlinux.org/title/List_of_appl
 ,zsh-syntax-highlighting,zsh syntax color,
 ,zsh-history-substring-search,zsh history search bindings,
 ,network-manager-applet,GUI for NetworkManager,
-,lightdm-gtk-greeter,GUI for lightdm,
 ,alsa-utils,qtile volume widget,
 ,python-psutil,qtile system stats widgets,
 ,python-pyxdg,qtile icon search,

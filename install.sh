@@ -15,7 +15,7 @@ systemctl --quiet enable systemd-timesyncd.service
 
 # https://wiki.archlinux.org/title/Installation_guide#Localization
 # Generate locales
-sed -i 's/^#en_US.UTF-8/en_US.UTF-8/g' /etc/locale.gen
+sed -i 's/^#en_US.UTF-8/en_US.UTF-8/' /etc/locale.gen
 locale-gen
 # Set the LANG variable
 echo "LANG=en_US.UTF-8" > /etc/locale.conf

@@ -66,9 +66,12 @@ systemctl --quiet disable ip6tables.service
 systemctl --quiet enable ufw.service
 ufw enable
 
-# https://wiki.archlinux.org/title/LightDM#Enabling_LightDM
-# Enable lightdm
-systemctl --quiet enable lightdm.service
+# https://wiki.archlinux.org/title/Greetd#Starting_greetd
+# Enable greetd
+systemctl --quiet enable greetd.service
+# https://wiki.archlinux.org/title/Greetd#tuigreet
+# Configure greetd with tuigreet
+sed -i "s/^command = .*$/command = \"tuigreet -t -r --remember-user-session --user-menu --theme 'border=magenta;text=cyan;action=yellow'\"/" /etc/greetd/config.toml
 
 # https://wiki.archlinux.org/title/CUPS#Installation
 # Enable cups
