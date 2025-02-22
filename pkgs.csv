@@ -4,7 +4,6 @@ Tag,Package,Description,URL
 ,ttf-hack-nerd,ttf-font-nerd provider,
 ,man-db,man command,https://wiki.archlinux.org/title/Man_page#Installation
 ,man-pages,man pages,https://wiki.archlinux.org/title/Man_page#Installation
-,tldr,man page summaries,
 ,bat,cat alternative,https://wiki.archlinux.org/title/Core_utilities#cat_alternatives
 ,fzf,command-line fuzzy finder,https://wiki.archlinux.org/title/Core_utilities#Interactive_filters
 A,shellcheck-bin,shell script linter,
@@ -44,6 +43,7 @@ A,shellcheck-bin,shell script linter,
 ,gimp,image editor,https://wiki.archlinux.org/title/List_of_applications/Multimedia#Raster_graphics_editors
 ,maim,screenshot tool,https://wiki.archlinux.org/title/List_of_applications/Multimedia#Screenshot
 ,pipewire,sound system,https://wiki.archlinux.org/title/List_of_applications/Multimedia#Audio_systems
+,pulsemixer,sound mixer,https://wiki.archlinux.org/title/List_of_applications/Multimedia#Volume_control
 ,mpv,video player,https://wiki.archlinux.org/title/List_of_applications/Multimedia#Video_players
 ,shotcut,video editor,https://wiki.archlinux.org/title/List_of_applications/Multimedia#Video_editors
 ,obs-studio,screen recorder,https://wiki.archlinux.org/title/List_of_applications/Multimedia#Screencast
