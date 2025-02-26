@@ -21,17 +21,18 @@ A,shellcheck-bin,shell script linter,
 ,pipewire-pulse,pulseaudio support for pipewire,
 ,pipewire-jack,jack support for pipewire,
 ,libinput,handle input devices,https://wiki.archlinux.org/title/Libinput#Installation
+,libnotify,desktop notifications,https://wiki.archlinux.org/title/Desktop_notifications#Libnotify
+,gnome-keyring,libsecret provider,https://wiki.archlinux.org/title/GNOME/Keyring#Installation
+,polkit-gnome,polkit agent,https://wiki.archlinux.org/title/Polkit#Authentication_agents
+,starship,custom prompt,
 ,xorg-server,display server,https://wiki.archlinux.org/title/Xorg#Installation
 ,xorg-xinit,startx and xinit command,https://wiki.archlinux.org/title/Xinit#Installation
 ,xorg-xset,screen saver timer,https://wiki.archlinux.org/title/Display_Power_Management_Signaling#Xorg
-,xss-lock,trigger screen locker,https://wiki.archlinux.org/title/Session_lock#Xorg_triggers
 ,xorg-setxkbmap,configure keyboard dinamically,https://wiki.archlinux.org/title/Libinput#Via_xinput_on_Xorg
 ,xorg-xinput,configure input devices dinamically,https://wiki.archlinux.org/title/Xorg/Keyboard_configuration#Using_setxkbmap
-,xdotool,get active window id for maim,
+,xss-lock,trigger screen locker,https://wiki.archlinux.org/title/Session_lock#Xorg_triggers
 ,xclip,command line clipboard,https://wiki.archlinux.org/title/Clipboard#Tools
-,polkit-gnome,polkit agent,https://wiki.archlinux.org/title/Polkit#Authentication_agents
-,libnotify,desktop notifications,https://wiki.archlinux.org/title/Desktop_notifications#Libnotify
-,starship,custom prompt,
+,xdotool,get active window id for maim,
 ,micro,terminal text editor,https://wiki.archlinux.org/title/List_of_applications/Documents#Text_editors
 ,libreoffice-still,office suite,https://wiki.archlinux.org/title/List_of_applications/Documents#Office_suites
 ,zathura,document viewer,https://wiki.archlinux.org/title/List_of_applications/Documents#PDF_and_DjVu
