@@ -8,10 +8,11 @@ Run iso2usb script[^1] to copy ISO to USB ([only UEFI](https://wiki.archlinux.or
 <sub>**Note:** dependencies mkfs.fat and mkfs.ext4 needed</sub>
 
 ```
-curl -O https://raw.githubusercontent.com/RFCreate/setup/main/iso2usb.sh
+curl -s -O https://raw.githubusercontent.com/RFCreate/setup/main/iso2usb.sh
 USB=/dev/your_usb
 ISO=path/to/archlinux-version-x86_64.iso
-. ./iso2usb.sh
+chmod +x ./iso2usb.sh
+./iso2usb.sh
 ```
 
 When finished, [boot into the USB](https://wiki.archlinux.org/title/Installation_guide#Boot_the_live_environment)
@@ -41,7 +42,7 @@ Run pre-installation script[^1]<br>
 mkdir -p /root/usb
 mount /dev/your_usb2 /root/usb
 DISK=/dev/your_disk
-. /root/usb/preinstall.sh
+/root/usb/preinstall.sh
 ```
 
 ---
@@ -58,7 +59,7 @@ Run installation script[^1]<br>
 <sub>**Note:** install a text editor to modify script</sub>
 
 ```
-. /install.sh
+/install.sh
 ```
 
 ---
@@ -91,7 +92,7 @@ Run setup script[^1]<br>
 <sub>**Note:** modify script to change your username</sub>
 
 ```
-. /setup.sh
+/setup.sh
 ```
 
 ---

@@ -50,14 +50,14 @@ sed -i 's/^%wheel ALL=(ALL:ALL) NOPASSWD: ALL/# %wheel ALL=(ALL:ALL) NOPASSWD: A
 
 # https://wiki.archlinux.org/title/Sudo#Sudoers_default_file_permissions
 # Reset sudoers file permissions in case of accidental change
-chown -c root:root /etc/sudoers
-chmod -c 0440 /etc/sudoers
+chown root:root /etc/sudoers
+chmod 0440 /etc/sudoers
 
 # https://wiki.archlinux.org/title/Doas#Configuration
-# Add config file to access root
+# Allow members of group wheel to run root commands
 echo 'permit setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin} :wheel' > /etc/doas.conf
-chown -c root:root /etc/doas.conf
-chmod -c 0400 /etc/doas.conf
+chown root:root /etc/doas.conf
+chmod 0400 /etc/doas.conf
 
 # https://wiki.archlinux.org/title/Uncomplicated_Firewall#Installation
 # Enable firewall

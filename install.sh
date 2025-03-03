@@ -65,3 +65,4 @@ systemctl --quiet enable NetworkManager.service
 
 # Download next script
 curl -s --output-dir / -O https://raw.githubusercontent.com/RFCreate/setup/main/setup.sh
+chmod +x /setup.sh
