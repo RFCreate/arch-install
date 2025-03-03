@@ -29,14 +29,15 @@ echo "Formatting iso partition..."
 mkfs.fat -F 32 "${USB}1"
 
 # Mount iso partition
-mount "${USB}1" /mnt
+isoDIR="$(mktemp -d)"
+mount "${USB}1" "$isoDIR"
 
 # Extract iso image to iso partition
 echo "Copying ISO to USB..."
-bsdtar -x -f "${ISO}" -C /mnt
+bsdtar -x -f "${ISO}" -C "$isoDIR"
 
 # Unmount iso partition
-umount /mnt
+umount "$isoDIR"
 
 ########## STORAGE ##########
 
@@ -45,10 +46,13 @@ echo "Formatting storage partition..."
 mkfs.ext4 -q -F "${USB}2"
 
 # Mount storage partition
-mount "${USB}2" /mnt
+storageDIR="$(mktemp -d)"
+mount "${USB}2" "$storageDIR"
 
 # Download next script
-curl -s --output-dir /mnt -O https://raw.githubusercontent.com/RFCreate/setup/main/preinstall.sh
+echo "Copying script to USB..."
+curl -s --output-dir "$storageDIR" -O https://raw.githubusercontent.com/RFCreate/setup/main/preinstall.sh
+chmod +x "$storageDIR/preinstall.sh"
 
 # Unmount storage partition
-umount /mnt
+umount "$storageDIR"
