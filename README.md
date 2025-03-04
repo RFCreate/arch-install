@@ -9,8 +9,8 @@ Run iso2usb script[^1] to copy ISO to USB ([only UEFI](https://wiki.archlinux.or
 
 ```
 curl -s -O https://raw.githubusercontent.com/RFCreate/setup/main/iso2usb.sh
-USB=/dev/your_usb
-ISO=path/to/archlinux-version-x86_64.iso
+export USB=/dev/your_usb
+export ISO=/path/to/archlinux.iso
 chmod +x ./iso2usb.sh
 ./iso2usb.sh
 ```
@@ -30,7 +30,7 @@ iwctl
 [iwd]# station _device_ get-networks              # list networks
 [iwd]# station _device_ connect _SSID_            # connect to network
 [iwd]# station _device_ show                      # display connection state
-[iwd]#  ( Ctrl+d )                                # exit
+[iwd]# quit                                       # exit
 ```
 
 ---
@@ -41,7 +41,7 @@ Run pre-installation script[^1]<br>
 ```
 mkdir -p /root/usb
 mount /dev/your_usb2 /root/usb
-DISK=/dev/your_disk
+export DISK=/dev/your_disk
 /root/usb/preinstall.sh
 ```
 

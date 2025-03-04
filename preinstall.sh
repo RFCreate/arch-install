@@ -6,9 +6,9 @@ KEYBOARD_LAYOUT="la-latin1"
 TIMEZONE="Etc/GMT+6"
 
 # Exit if DISK is empty
-[ -z "$DISK" ] && echo "Error: Missing DISK device, use DISK=/dev/your_disk" && exit 1
-[ ! -b "$DISK" ] && echo "Error: DISK does not exist, use DISK=/dev/your_disk" && exit 1
-[ "$(lsblk -dno type "$DISK")" != "disk" ] && echo "Error: DISK is not disk type, use DISK=/dev/your_disk" && exit 1
+[ -z "$DISK" ] && echo "Error: Missing DISK device. export DISK=/dev/your_disk" && exit 1
+[ ! -b "$DISK" ] && echo "Error: DISK does not exist. export DISK=/dev/your_disk" && exit 1
+[ "$(lsblk -dno type "$DISK")" != "disk" ] && echo "Error: DISK is not disk type. export DISK=/dev/your_disk" && exit 1
 
 # https://wiki.archlinux.org/title/Installation_guide#Set_the_console_keyboard_layout_and_font
 # Set console keyboard layout
