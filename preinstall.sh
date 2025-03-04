@@ -6,9 +6,9 @@ KEYBOARD_LAYOUT="la-latin1"
 TIMEZONE="Etc/GMT+6"
 
 # Exit if DISK is empty
-[ -z "$DISK" ] && echo "Error: Missing DISK device. export DISK=/dev/your_disk" && exit 1
-[ ! -b "$DISK" ] && echo "Error: DISK does not exist. export DISK=/dev/your_disk" && exit 1
-[ "$(lsblk -dno type "$DISK")" != "disk" ] && echo "Error: DISK is not disk type. export DISK=/dev/your_disk" && exit 1
+[ -z "$DISK" ] && echo "Error: Missing DISK device. export DISK=/dev/your_disk" >&2 && exit 1
+[ ! -b "$DISK" ] && echo "Error: DISK does not exist. export DISK=/dev/your_disk" >&2 && exit 1
+[ "$(lsblk -dno type "$DISK")" != "disk" ] && echo "Error: DISK is not disk type. export DISK=/dev/your_disk" >&2 && exit 1
 
 # https://wiki.archlinux.org/title/Installation_guide#Set_the_console_keyboard_layout_and_font
 # Set console keyboard layout
@@ -24,12 +24,12 @@ timedatectl set-ntp true
 
 # Remove partition signatures
 echo "Removing disk signatures..."
-wipefs --all -q "${DISK}" || ! echo "Error ocurred!" || exit 1
+wipefs --all -q "${DISK}" || exit 1
 
 # https://wiki.archlinux.org/title/Installation_guide#Partition_the_disks
 # Partition disk
 echo "Partitioning disk..."
-printf "size=+1G,type=L\nsize=+5G,type=L\nsize=+,type=L\n" | sfdisk -q "${DISK}" || ! echo "Error ocurred!" || exit 1
+printf "size=+1G,type=L\nsize=+5G,type=L\nsize=+,type=L\n" | sfdisk -q "${DISK}" || exit 1
 
 # https://wiki.archlinux.org/title/Installation_guide#Format_the_partitions
 # Format root partition
