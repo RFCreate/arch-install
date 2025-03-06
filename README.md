@@ -8,7 +8,7 @@ Run iso2usb script[^1] to copy ISO to USB ([only UEFI](https://wiki.archlinux.or
 <sub>**Note:** dependencies mkfs.fat and mkfs.ext4 needed</sub>
 
 ```
-curl -s -O https://raw.githubusercontent.com/RFCreate/setup/main/iso2usb.sh
+curl -sS -O https://raw.githubusercontent.com/RFCreate/setup/main/iso2usb.sh
 export USB=/dev/your_usb
 export ISO=/path/to/archlinux.iso
 chmod +x ./iso2usb.sh

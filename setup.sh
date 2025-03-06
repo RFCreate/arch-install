@@ -29,12 +29,12 @@ id -u "$NEWUSER" > /dev/null 2>&1 || useradd -mk "" -G wheel "$NEWUSER"
 # https://github.com/Jguer/yay#Installation
 # Install yay from AUR
 if ! pacman -Q yay > /dev/null 2>&1; then
-    curl -s --output-dir /tmp -L -O https://aur.archlinux.org/cgit/aur.git/snapshot/yay-bin.tar.gz
+    curl -sS --output-dir /tmp -L -O https://aur.archlinux.org/cgit/aur.git/snapshot/yay-bin.tar.gz
     runuser -l "$NEWUSER" -c "cd /tmp && tar -C /tmp -xf /tmp/yay-bin.tar.gz && cd yay-bin && makepkg -si --needed --noconfirm" >> /yay-output.log 2>> /yay-error.log
 fi
 
 # Install packages inside csv file
-curl -s -o /tmp/pkgs.csv.tmp https://raw.githubusercontent.com/RFCreate/setup/main/pkgs.csv
+curl -sS -o /tmp/pkgs.csv.tmp https://raw.githubusercontent.com/RFCreate/setup/main/pkgs.csv
 tail -n +2 /tmp/pkgs.csv.tmp | cut -d ',' -f -2 > /tmp/pkgs.csv
 while IFS=, read -r tag program; do
     case "$tag" in

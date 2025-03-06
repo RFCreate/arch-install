@@ -60,5 +60,5 @@ pacstrap -K /mnt base base-devel linux linux-firmware linux-headers >> /mnt/pacs
 genfstab -U /mnt >> /mnt/etc/fstab
 
 # Download next script
-curl -s --output-dir /mnt -O https://raw.githubusercontent.com/RFCreate/setup/main/install.sh
+curl -sS --output-dir /mnt -O https://raw.githubusercontent.com/RFCreate/setup/main/install.sh
 chmod +x /mnt/install.sh

@@ -64,5 +64,5 @@ systemctl --quiet enable NetworkManager.service
 [ -n "$(lspci -d 14e4: 2> /dev/null)" ] && pacman -S --needed --noconfirm broadcom-wl-dkms >> /pacman-output.log 2>> /pacman-error.log
 
 # Download next script
-curl -s --output-dir / -O https://raw.githubusercontent.com/RFCreate/setup/main/setup.sh
+curl -sS --output-dir / -O https://raw.githubusercontent.com/RFCreate/setup/main/setup.sh
 chmod +x /setup.sh
