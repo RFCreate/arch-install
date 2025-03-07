@@ -30,7 +30,7 @@ id -u "$NEWUSER" > /dev/null 2>&1 || useradd -mk "" -G wheel "$NEWUSER"
 # Install yay from AUR
 if ! pacman -Q yay > /dev/null 2>&1; then
     curl -sS --output-dir /tmp -L -O https://aur.archlinux.org/cgit/aur.git/snapshot/yay-bin.tar.gz
-    runuser -l "$NEWUSER" -c "cd /tmp && tar -C /tmp -xf /tmp/yay-bin.tar.gz && cd yay-bin && makepkg -si --needed --noconfirm" >> /yay-output.log 2>> /yay-error.log
+    runuser -l "$NEWUSER" -c "cd /tmp && tar -C /tmp -xf /tmp/yay-bin.tar.gz && cd yay-bin && makepkg -si --needed --noconfirm" >> /yay.log 2>&1
 fi
 
 # Install packages inside csv file
@@ -38,8 +38,8 @@ curl -sS -o /tmp/pkgs.csv.tmp https://raw.githubusercontent.com/RFCreate/setup/m
 tail -n +2 /tmp/pkgs.csv.tmp | cut -d ',' -f -2 > /tmp/pkgs.csv
 while IFS=, read -r tag program; do
     case "$tag" in
-        "A") runuser -l "$NEWUSER" -c "yay -S --needed --noconfirm $program" >> /yay-output.log 2>> /yay-error.log ;;
-        *) pacman -S --needed --noconfirm "$program" >> /pacman-output.log 2>> /pacman-error.log ;;
+        "A") runuser -l "$NEWUSER" -c "yay -S --needed --noconfirm $program" >> /yay.log 2>&1 ;;
+        *) pacman -S --needed --noconfirm "$program" >> /pacman.log 2>&1 ;;
     esac
 done < /tmp/pkgs.csv
 

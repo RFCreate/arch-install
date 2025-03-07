@@ -30,7 +30,7 @@ echo arch > /etc/hostname
 
 # https://wiki.archlinux.org/title/Installation_guide#Boot_loader
 if [ -f /sys/firmware/efi/fw_platform_size ]; then
-    pacman -S --needed --noconfirm grub efibootmgr >> /pacman-output.log 2>> /pacman-error.log
+    pacman -S --needed --noconfirm grub efibootmgr >> /pacman.log 2>&1
     # https://wiki.archlinux.org/title/Installation_guide#Verify_the_boot_mode
     case "$(cat /sys/firmware/efi/fw_platform_size)" in
         # https://wiki.archlinux.org/title/GRUB#Installation
@@ -39,7 +39,7 @@ if [ -f /sys/firmware/efi/fw_platform_size ]; then
     esac
 else
     # https://wiki.archlinux.org/title/GRUB#Installation_2
-    pacman -S --needed --noconfirm grub >> /pacman-output.log 2>> /pacman-error.log
+    pacman -S --needed --noconfirm grub >> /pacman.log 2>&1
     cd / && grub-install --target=i386-pc "$(findmnt --output source --noheadings --target . | sed 's/[0-9]*$//')"
 fi
 # Boot default entry N seconds after the menu is displayed
@@ -49,19 +49,19 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 # https://wiki.archlinux.org/title/Microcode
 # Install processor microcode update
-grep -q AuthenticAMD /proc/cpuinfo && pacman -S --needed --noconfirm amd-ucode >> /pacman-output.log 2>> /pacman-error.log
-grep -q GenuineIntel /proc/cpuinfo && pacman -S --needed --noconfirm intel-ucode >> /pacman-output.log 2>> /pacman-error.log
+grep -q AuthenticAMD /proc/cpuinfo && pacman -S --needed --noconfirm amd-ucode >> /pacman.log 2>&1
+grep -q GenuineIntel /proc/cpuinfo && pacman -S --needed --noconfirm intel-ucode >> /pacman.log 2>&1
 
 # https://wiki.archlinux.org/title/NetworkManager#Installation
 # Add network manager
-pacman -S --needed --noconfirm networkmanager >> /pacman-output.log 2>> /pacman-error.log
+pacman -S --needed --noconfirm networkmanager >> /pacman.log 2>&1
 # https://wiki.archlinux.org/title/NetworkManager#Enable_NetworkManager
 # Enable network manager
 systemctl --quiet enable NetworkManager.service
 
 # https://wiki.archlinux.org/title/Broadcom_wireless#Driver_selection
 # Install Broadcom drivers if needed
-[ -n "$(lspci -d 14e4: 2> /dev/null)" ] && pacman -S --needed --noconfirm broadcom-wl-dkms >> /pacman-output.log 2>> /pacman-error.log
+[ -n "$(lspci -d 14e4: 2> /dev/null)" ] && pacman -S --needed --noconfirm broadcom-wl-dkms >> /pacman.log 2>&1
 
 # Download next script
 curl -sS --output-dir / -O https://raw.githubusercontent.com/RFCreate/setup/main/setup.sh
