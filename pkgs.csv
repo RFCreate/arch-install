@@ -32,7 +32,8 @@ A,shellcheck-bin,shell script linter,
 ,xorg-xinput,configure input devices dinamically,https://wiki.archlinux.org/title/Xorg/Keyboard_configuration#Using_setxkbmap
 ,xss-lock,trigger screen locker,https://wiki.archlinux.org/title/Session_lock#Xorg_triggers
 ,xclip,command line clipboard,https://wiki.archlinux.org/title/Clipboard#Tools
-,xdotool,get active window id for maim,
+,xdotool,get active window id,
+,numlockx,activate numlock,
 ,micro,terminal text editor,https://wiki.archlinux.org/title/List_of_applications/Documents#Text_editors
 ,libreoffice-still,office suite,https://wiki.archlinux.org/title/List_of_applications/Documents#Office_suites
 ,zathura,document viewer,https://wiki.archlinux.org/title/List_of_applications/Documents#PDF_and_DjVu
