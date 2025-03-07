@@ -30,7 +30,7 @@ mkfs.fat -F 32 "${USB}1"
 
 # Mount iso partition
 isoDIR="$(mktemp -d)"
-mount "${USB}1" "$isoDIR"
+mount "${USB}1" "$isoDIR" || exit 1
 
 # Extract iso image to iso partition
 echo "Copying ISO to USB..."
@@ -47,7 +47,7 @@ mkfs.ext4 -q -F "${USB}2"
 
 # Mount storage partition
 storageDIR="$(mktemp -d)"
-mount "${USB}2" "$storageDIR"
+mount "${USB}2" "$storageDIR" || exit 1
 
 # Download next script
 echo "Copying script to USB..."
