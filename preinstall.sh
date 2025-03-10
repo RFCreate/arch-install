@@ -1,14 +1,30 @@
 #!/bin/sh
 
+#Define helper
+usage() {
+    echo "Usage: $0 -d </dev/your_disk>" 1>&2
+    exit 1
+}
+
+# Check arguments
+while getopts ":d:" opt; do
+    case $opt in
+        d) DISK="${OPTARG}" ;;
+        *) usage ;;
+    esac
+done
+
+# Exit if DISK is invalid
+[ -z "$DISK" ] && echo "Error: Missing DISK device." >&2 && usage
+[ ! -b "$DISK" ] && echo "Error: DISK does not exist." >&2 && usage
+[ "$(lsblk -dno type "$DISK")" != "disk" ] && echo "Error: DISK is not disk type." >&2 && usage
+
+#############################
+
 # Script variables
 CONSOLE_FONT="ter-122b"
 KEYBOARD_LAYOUT="la-latin1"
 TIMEZONE="Etc/GMT+6"
-
-# Exit if DISK is empty
-[ -z "$DISK" ] && echo "Error: Missing DISK device. export DISK=/dev/your_disk" >&2 && exit 1
-[ ! -b "$DISK" ] && echo "Error: DISK does not exist. export DISK=/dev/your_disk" >&2 && exit 1
-[ "$(lsblk -dno type "$DISK")" != "disk" ] && echo "Error: DISK is not disk type. export DISK=/dev/your_disk" >&2 && exit 1
 
 # https://wiki.archlinux.org/title/Installation_guide#Set_the_console_keyboard_layout_and_font
 # Set console keyboard layout
@@ -19,7 +35,7 @@ setfont "$CONSOLE_FONT"
 # https://wiki.archlinux.org/title/Installation_guide#Update_the_system_clock
 # Set time zone
 timedatectl set-timezone "$TIMEZONE"
-# Activate system clock synchronization via network
+# Enable system clock synchronization via network
 timedatectl set-ntp true
 
 # Remove partition signatures

@@ -4,15 +4,32 @@
 command -v mkfs.fat > /dev/null 2>&1 || ! echo "Error: Dependency mkfs.fat not found" >&2 || exit 1
 command -v mkfs.ext4 > /dev/null 2>&1 || ! echo "Error: Dependency mkfs.ext4 not found" >&2 || exit 1
 
+#Define helper
+usage() {
+    echo "Usage: $0 -d </dev/your_usb> -i </path/to/archlinux.iso>" 1>&2
+    exit 1
+}
+
+# Check arguments
+while getopts ":d:i:" opt; do
+    case $opt in
+        d) USB="${OPTARG}" ;;
+        i) ISO="${OPTARG}" ;;
+        *) usage ;;
+    esac
+done
+
 # Exit if USB is invalid
-[ -z "$USB" ] && echo "Error: Missing USB device. export USB=/dev/your_usb" >&2 && exit 1
-[ ! -b "$USB" ] && echo "Error: USB does not exist. export USB=/dev/your_usb" >&2 && exit 1
-[ "$(lsblk -dno type "$USB")" != "disk" ] && echo "Error: USB is not disk type. export USB=/dev/your_usb" >&2 && exit 1
+[ -z "$USB" ] && echo "Error: Missing USB device." >&2 && usage
+[ ! -b "$USB" ] && echo "Error: USB '$USB' does not exist." >&2 && usage
+[ "$(lsblk -dno type "$USB")" != "disk" ] && echo "Error: USB '$USB' is not disk type." >&2 && usage
 
 # Exit if ISO is invalid
-[ -z "$ISO" ] && echo "Error: Missing ISO file. export ISO=/path/to/archlinux.iso" >&2 && exit 1
-[ ! -f "$ISO" ] && echo "Error: ISO file does not exist. export ISO=/path/to/archlinux.iso" >&2 && exit 1
-! bsdtar -Otf "$ISO" 2> /dev/null && echo "Error: Unrecognized archive format. export ISO=/path/to/archlinux.iso" >&2 && exit 1
+[ -z "$ISO" ] && echo "Error: Missing ISO file." >&2 && usage
+[ ! -f "$ISO" ] && echo "Error: ISO '$ISO' file does not exist." >&2 && usage
+! bsdtar -Otf "$ISO" 2> /dev/null && echo "Error: ISO '$ISO' archive format." >&2 && usage
+
+############ USB ############
 
 # Remove partition signatures
 echo "Removing disk signatures..."
