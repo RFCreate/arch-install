@@ -83,7 +83,6 @@ A,rofi-greenclip,clipboard manager,https://wiki.archlinux.org/title/List_of_appl
 ,alsa-utils,qtile volume widget,
 ,python-psutil,qtile system stats widgets,
 ,python-pyxdg,qtile icon search,
-,python-dbus-next,qtile notifications,
 ,github-cli,GitHub command line tool,
 ,gvfs-mtp,MTP support for gvfs,
 ,gvfs-gphoto2,PTP support for gvfs,
