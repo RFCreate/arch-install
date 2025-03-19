@@ -84,16 +84,6 @@ systemctl --quiet disable systemd-resolved.service
 systemctl --quiet enable avahi-daemon.socket
 sed -i 's/hosts: mymachines resolve/hosts: mymachines mdns_minimal [NOTFOUND=return] resolve/' /etc/nsswitch.conf
 
-# https://wiki.archlinux.org/title/File_manager_functionality#Use_PCManFM_to_get_thumbnails_for_other_file_types
-# Get thumbnail preview for PDFs
-mkdir -p /usr/share/thumbnailers
-cat > /usr/share/thumbnailers/imagemagick-pdf.thumbnailer << EOF
-[Thumbnailer Entry]
-TryExec=convert
-Exec=convert %i[0] -background "#FFFFFF" -flatten -thumbnail %s %o
-MimeType=application/pdf;application/x-pdf;image/pdf;
-EOF
-
 # https://wiki.archlinux.org/title/Command-line_shell#Changing_your_default_shell
 # Change new user default shell
 [ "$(getent passwd "$NEWUSER" | awk -F: '{print $NF}')" = "/usr/bin/zsh" ] || chsh -s /usr/bin/zsh "$NEWUSER" > /dev/null
