@@ -4,22 +4,22 @@ Tag,Package,Description,URL
 ,ttf-hack-nerd,ttf-font-nerd provider,
 ,man-db,man command,https://wiki.archlinux.org/title/Man_page#Installation
 ,man-pages,man pages,https://wiki.archlinux.org/title/Man_page#Installation
+,zip,zip compression,https://wiki.archlinux.org/title/Archiving_and_compression#Archiving_and_compression
+,unzip,zip decompression,https://wiki.archlinux.org/title/Archiving_and_compression#Archiving_and_compression
 ,bat,cat alternative,https://wiki.archlinux.org/title/Core_utilities#cat_alternatives
 ,fzf,command-line fuzzy finder,https://wiki.archlinux.org/title/Core_utilities#Interactive_filters
 A,shellcheck-bin,shell script linter,
 ,shfmt,shell script formatter,
-,zip,zip compression,https://wiki.archlinux.org/title/Archiving_and_compression#Archiving_and_compression
-,unzip,zip decompression,https://wiki.archlinux.org/title/Archiving_and_compression#Archiving_and_compression
 ,cups,printing system,https://wiki.archlinux.org/title/CUPS#Installation
 ,cups-pdf,support print to PDF,https://wiki.archlinux.org/title/CUPS#Installation
 ,usbutils,usb printer detection,https://wiki.archlinux.org/title/CUPS#USB
 ,avahi,wireless printer detection,https://wiki.archlinux.org/title/CUPS#Printer_discovery
 ,nss-mdns,hostname resolution,https://wiki.archlinux.org/title/Avahi#Hostname_resolution
-,wireplumber,pipewire manager,
-,pipewire-audio,audio support for pipewire,
-,pipewire-alsa,alsa support for pipewire,
-,pipewire-pulse,pulseaudio support for pipewire,
-,pipewire-jack,jack support for pipewire,
+,wireplumber,pipewire manager,https://wiki.archlinux.org/title/PipeWire#WirePlumber
+,pipewire-audio,audio support for pipewire,https://wiki.archlinux.org/title/PipeWire#Audio
+,pipewire-alsa,alsa support for pipewire,https://wiki.archlinux.org/title/PipeWire#ALSA_clients
+,pipewire-pulse,pulseaudio support for pipewire,https://wiki.archlinux.org/title/PipeWire#PulseAudio_clients
+,pipewire-jack,jack support for pipewire,https://wiki.archlinux.org/title/PipeWire#JACK_clients
 ,libinput,handle input devices,https://wiki.archlinux.org/title/Libinput#Installation
 ,libnotify,desktop notifications,https://wiki.archlinux.org/title/Desktop_notifications#Libnotify
 ,gnome-keyring,libsecret provider,https://wiki.archlinux.org/title/GNOME/Keyring#Installation
@@ -32,8 +32,8 @@ A,shellcheck-bin,shell script linter,
 ,xorg-xinput,configure input devices dinamically,https://wiki.archlinux.org/title/Xorg/Keyboard_configuration#Using_setxkbmap
 ,xss-lock,trigger screen locker,https://wiki.archlinux.org/title/Session_lock#Xorg_triggers
 ,xclip,command line clipboard,https://wiki.archlinux.org/title/Clipboard#Tools
+,numlockx,activate numlock,https://wiki.archlinux.org/title/Activating_numlock_on_bootup#X.org
 ,xdotool,get active window id,
-,numlockx,activate numlock,
 ,micro,terminal text editor,https://wiki.archlinux.org/title/List_of_applications/Documents#Text_editors
 ,libreoffice-still,office suite,https://wiki.archlinux.org/title/List_of_applications/Documents#Office_suites
 ,zathura,document viewer,https://wiki.archlinux.org/title/List_of_applications/Documents#PDF_and_DjVu
