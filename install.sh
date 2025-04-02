@@ -42,8 +42,8 @@ else
     pacman -S --needed --noconfirm grub >> /pacman.log 2>&1
     cd / && grub-install --target=i386-pc "$(findmnt --output source --noheadings --target . | sed 's/[0-9]*$//')"
 fi
-# Boot default entry N seconds after the menu is displayed
-sed -i 's/GRUB_TIMEOUT=./GRUB_TIMEOUT=3/' /etc/default/grub
+# Set time for grub menu
+sed -i 's/GRUB_TIMEOUT=.*/GRUB_TIMEOUT=5/' /etc/default/grub
 # https://wiki.archlinux.org/title/GRUB#Generate_the_main_configuration_file
 grub-mkconfig -o /boot/grub/grub.cfg
 
