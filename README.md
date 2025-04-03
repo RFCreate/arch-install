@@ -10,7 +10,7 @@ Run iso2usb script[^1] to copy ISO to USB ([only UEFI](https://wiki.archlinux.or
 ```
 curl -sS -O https://raw.githubusercontent.com/RFCreate/setup/main/iso2usb.sh
 chmod +x ./iso2usb.sh
-./iso2usb.sh -d /dev/your_usb -i /path/to/archlinux.iso
+./iso2usb.sh -d /dev/USB -i /path/to/ISO
 ```
 
 When finished, [boot into the USB](https://wiki.archlinux.org/title/Installation_guide#Boot_the_live_environment)
@@ -38,8 +38,8 @@ Run pre-installation script[^1]<br>
 
 ```
 mkdir -p /root/usb
-mount /dev/your_usb2 /root/usb
-/root/usb/preinstall.sh -d /dev/your_disk
+mount /dev/USB2 /root/usb
+/root/usb/preinstall.sh -d /dev/DISK
 ```
 
 ---

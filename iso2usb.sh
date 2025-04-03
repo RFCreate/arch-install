@@ -6,7 +6,7 @@ command -v mkfs.ext4 > /dev/null 2>&1 || ! echo "Error: Dependency mkfs.ext4 not
 
 #Define helper
 usage() {
-    echo "Usage: $0 -d </dev/your_usb> -i </path/to/archlinux.iso>" 1>&2
+    echo "Usage: $0 -d </dev/USB> -i </path/to/ISO>" 1>&2
     exit 1
 }
 

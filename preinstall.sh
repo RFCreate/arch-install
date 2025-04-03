@@ -2,7 +2,7 @@
 
 #Define helper
 usage() {
-    echo "Usage: $0 -d </dev/your_disk>" 1>&2
+    echo "Usage: $0 -d </dev/DISK>" 1>&2
     exit 1
 }
 
