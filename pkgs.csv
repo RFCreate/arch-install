@@ -68,7 +68,6 @@ A,rofi-greenclip,clipboard manager,https://wiki.archlinux.org/title/List_of_appl
 ,perl-rename,regex renamer,https://wiki.archlinux.org/title/List_of_applications/Utilities#Batch_renamers
 ,git,version control,https://wiki.archlinux.org/title/List_of_applications/Utilities#Version_control_systems
 ,code,IDE,https://wiki.archlinux.org/title/List_of_applications/Utilities#Integrated_development_environments
-,dosfstools,FAT formatter tools,https://wiki.archlinux.org/title/List_of_applications/Utilities#Formatting_tools
 ,btop,terminal task manager,https://wiki.archlinux.org/title/List_of_applications/Utilities#System_monitors
 ,arandr,GUI for xrandr,https://wiki.archlinux.org/title/List_of_applications/Utilities#Screen_management
 ,brightnessctl,control screen brightness,https://wiki.archlinux.org/title/List_of_applications/Utilities#Backlight_management
