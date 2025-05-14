@@ -3,20 +3,6 @@
 # Script variables
 NEWUSER="user"
 
-# https://wiki.archlinux.org/title/PC_speaker#Globally
-# Remove beep sound
-lsmod | grep -wq pcspkr && rmmod pcspkr
-lsmod | grep -wq snd_pcsp && rmmod snd_pcsp
-echo 'blacklist pcspkr' > /etc/modprobe.d/nobeep.conf
-echo 'blacklist snd_pcsp' >> /etc/modprobe.d/nobeep.conf
-
-# https://wiki.archlinux.org/title/Power_management#ACPI_events
-# Ignore power/suspend/reboot/hibernate buttons
-sed -i 's/^#*HandlePowerKey=.*/HandlePowerKey=ignore/' /etc/systemd/logind.conf
-sed -i 's/^#*HandleRebootKey=.*/HandleRebootKey=ignore/' /etc/systemd/logind.conf
-sed -i 's/^#*HandleSuspendKey=.*/HandleSuspendKey=ignore/' /etc/systemd/logind.conf
-sed -i 's/^#*HandleHibernateKey=.*/HandleHibernateKey=ignore/' /etc/systemd/logind.conf
-
 # https://wiki.archlinux.org/title/Sudo#Example_entries
 # Allow wheel group to run sudo without password
 sed -i 's/^# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/' /etc/sudoers
@@ -48,6 +34,36 @@ done < /tmp/pkgs.csv
 sed -i 's/^%wheel ALL=(ALL:ALL) NOPASSWD: ALL/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/' /etc/sudoers
 sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 
+# https://wiki.archlinux.org/title/Command-line_shell#Changing_your_default_shell
+# Change new user default shell
+[ "$(getent passwd "$NEWUSER" | awk -F: '{print $NF}')" = "/usr/bin/zsh" ] || chsh -s /usr/bin/zsh "$NEWUSER" > /dev/null
+
+# https://wiki.archlinux.org/title/Dotfiles#Tracking_dotfiles_directly_with_Git
+# Copy dotfiles from repo to HOME
+runuser -l "$NEWUSER" << 'EOF'
+git clone -q --bare https://github.com/RFCreate/dotfiles.git "$HOME/.dotfiles" --depth 1
+dotfiles(){ git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" $@; }
+dotfiles config --local status.showUntrackedFiles no
+cd "$HOME" && mkdir -p .dotfiles-backup
+dotfiles checkout 2>&1 | grep "\s\s*\." | awk '{print $1}' | sed 's|[^/]*$||' | sort -u | xargs -I {} mkdir -p ".dotfiles-backup/{}"
+dotfiles checkout 2>&1 | grep "\s\s*\." | awk '{print $1}' | xargs -I {} mv {} ".dotfiles-backup/{}"
+dotfiles checkout -f
+EOF
+
+# https://wiki.archlinux.org/title/PC_speaker#Globally
+# Remove beep sound
+lsmod | grep -wq pcspkr && rmmod pcspkr
+lsmod | grep -wq snd_pcsp && rmmod snd_pcsp
+echo 'blacklist pcspkr' > /etc/modprobe.d/nobeep.conf
+echo 'blacklist snd_pcsp' >> /etc/modprobe.d/nobeep.conf
+
+# https://wiki.archlinux.org/title/Power_management#ACPI_events
+# Ignore power/suspend/reboot/hibernate buttons
+sed -i 's/^#*HandlePowerKey=.*/HandlePowerKey=ignore/' /etc/systemd/logind.conf
+sed -i 's/^#*HandleRebootKey=.*/HandleRebootKey=ignore/' /etc/systemd/logind.conf
+sed -i 's/^#*HandleSuspendKey=.*/HandleSuspendKey=ignore/' /etc/systemd/logind.conf
+sed -i 's/^#*HandleHibernateKey=.*/HandleHibernateKey=ignore/' /etc/systemd/logind.conf
+
 # https://wiki.archlinux.org/title/Sudo#Sudoers_default_file_permissions
 # Reset sudoers file permissions in case of accidental change
 chown root:root /etc/sudoers
@@ -58,13 +74,6 @@ chmod 0440 /etc/sudoers
 echo 'permit setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin} :wheel' > /etc/doas.conf
 chown root:root /etc/doas.conf
 chmod 0400 /etc/doas.conf
-
-# https://wiki.archlinux.org/title/Uncomplicated_Firewall#Installation
-# Enable firewall
-systemctl --quiet disable iptables.service
-systemctl --quiet disable ip6tables.service
-systemctl --quiet enable ufw.service
-ufw enable
 
 # https://wiki.archlinux.org/title/Greetd#Starting_greetd
 # Enable greetd
@@ -84,18 +93,9 @@ systemctl --quiet disable systemd-resolved.service
 systemctl --quiet enable avahi-daemon.socket
 sed -i 's/hosts: mymachines resolve/hosts: mymachines mdns_minimal [NOTFOUND=return] resolve/' /etc/nsswitch.conf
 
-# https://wiki.archlinux.org/title/Command-line_shell#Changing_your_default_shell
-# Change new user default shell
-[ "$(getent passwd "$NEWUSER" | awk -F: '{print $NF}')" = "/usr/bin/zsh" ] || chsh -s /usr/bin/zsh "$NEWUSER" > /dev/null
-
-# https://wiki.archlinux.org/title/Dotfiles#Tracking_dotfiles_directly_with_Git
-# Copy dotfiles from repo to HOME
-runuser -l "$NEWUSER" << 'EOF'
-git clone -q --bare https://github.com/RFCreate/dotfiles.git "$HOME/.dotfiles" --depth 1
-dotfiles(){ git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" $@; }
-dotfiles config --local status.showUntrackedFiles no
-cd "$HOME" && mkdir -p .dotfiles-backup
-dotfiles checkout 2>&1 | grep "\s\s*\." | awk '{print $1}' | sed 's|[^/]*$||' | sort -u | xargs -I {} mkdir -p ".dotfiles-backup/{}"
-dotfiles checkout 2>&1 | grep "\s\s*\." | awk '{print $1}' | xargs -I {} mv {} ".dotfiles-backup/{}"
-dotfiles checkout -f
-EOF
+# https://wiki.archlinux.org/title/Uncomplicated_Firewall#Installation
+# Enable firewall
+systemctl --quiet disable iptables.service
+systemctl --quiet disable ip6tables.service
+systemctl --quiet enable ufw.service
+ufw enable
