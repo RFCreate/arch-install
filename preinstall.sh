@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# Script variables
+CONSOLE_FONT="ter-122b"
+KEYBOARD_LAYOUT="la-latin1"
+TIMEZONE="Etc/GMT+6"
+
 #Define helper
 usage() {
     echo "Usage: $0 -d </dev/DISK>" 1>&2
@@ -9,7 +14,7 @@ usage() {
 # Check arguments
 while getopts ":d:" opt; do
     case $opt in
-        d) DISK="${OPTARG}" ;;
+        'd') DISK="${OPTARG}" ;;
         *) usage ;;
     esac
 done
@@ -18,13 +23,6 @@ done
 [ -z "$DISK" ] && echo "Error: Missing DISK device." >&2 && usage
 [ ! -b "$DISK" ] && echo "Error: DISK does not exist." >&2 && usage
 [ "$(lsblk -dno type "$DISK")" != "disk" ] && echo "Error: DISK is not disk type." >&2 && usage
-
-#############################
-
-# Script variables
-CONSOLE_FONT="ter-122b"
-KEYBOARD_LAYOUT="la-latin1"
-TIMEZONE="Etc/GMT+6"
 
 # https://wiki.archlinux.org/title/Installation_guide#Set_the_console_keyboard_layout_and_font
 # Set console keyboard layout

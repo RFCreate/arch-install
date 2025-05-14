@@ -12,8 +12,8 @@ usage() {
 # Check arguments
 while getopts ":d:i:" opt; do
     case $opt in
-        d) USB="${OPTARG}" ;;
-        i) ISO="${OPTARG}" ;;
+        'd') USB="${OPTARG}" ;;
+        'i') ISO="${OPTARG}" ;;
         *) usage ;;
     esac
 done
