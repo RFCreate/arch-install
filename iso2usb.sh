@@ -1,8 +1,7 @@
 #!/bin/sh
 
-# Check if mkfs commands exists
+# Check if formatter commands exists
 command -v mkfs.fat > /dev/null 2>&1 || ! echo "Error: Dependency mkfs.fat not found" >&2 || exit 1
-command -v mkfs.ext4 > /dev/null 2>&1 || ! echo "Error: Dependency mkfs.ext4 not found" >&2 || exit 1
 
 #Define helper
 usage() {
@@ -29,47 +28,22 @@ done
 [ ! -f "$ISO" ] && echo "Error: ISO '$ISO' file does not exist." >&2 && usage
 ! bsdtar -Otf "$ISO" 2> /dev/null && echo "Error: ISO '$ISO' archive format." >&2 && usage
 
-############ USB ############
+# Format USB
+echo "Formatting USB..."
+mkfs.fat -F 32 "$USB" || exit 1
 
-# Remove partition signatures
-echo "Removing disk signatures..."
-wipefs --all -q "${USB}" || exit 1
+# Mount USB
+mountDIR="$(mktemp -d)"
+mount "$USB" "$mountDIR" || exit 1
 
-# Partition usb
-echo "Partitioning disk..."
-printf "size=+2G,type=L,bootable,\nsize=+,type=L\n" | sfdisk -q "${USB}" || exit 1
-
-############ ISO ############
-
-# Format iso partition
-echo "Formatting iso partition..."
-mkfs.fat -F 32 "${USB}1"
-
-# Mount iso partition
-isoDIR="$(mktemp -d)"
-mount "${USB}1" "$isoDIR" || exit 1
-
-# Extract iso image to iso partition
+# Extract iso image to USB
 echo "Copying ISO to USB..."
-bsdtar -x -f "${ISO}" -C "$isoDIR"
+bsdtar -x -f "${ISO}" -C "$mountDIR"
 
-# Unmount iso partition
-umount "$isoDIR"
-
-########## STORAGE ##########
-
-# Format storage partition
-echo "Formatting storage partition..."
-mkfs.ext4 -q -F "${USB}2"
-
-# Mount storage partition
-storageDIR="$(mktemp -d)"
-mount "${USB}2" "$storageDIR" || exit 1
-
-# Download next script
+# Download script to USB
 echo "Copying script to USB..."
-curl -sS --output-dir "$storageDIR" -O https://raw.githubusercontent.com/RFCreate/arch-install/main/preinstall.sh
-chmod +x "$storageDIR/preinstall.sh"
+curl -sS --output-dir "$mountDIR" -O https://raw.githubusercontent.com/RFCreate/arch-install/main/preinstall.sh
+chmod +x "$mountDIR/preinstall.sh"
 
-# Unmount storage partition
-umount "$storageDIR"
+# Unmount USB
+umount "$mountDIR"

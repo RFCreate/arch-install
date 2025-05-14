@@ -38,7 +38,7 @@ Run pre-installation script[^1]<br>
 
 ```
 mkdir -p /root/usb
-mount /dev/USB2 /root/usb
+mount /dev/USB /root/usb
 /root/usb/preinstall.sh -d /dev/DISK
 ```
 
