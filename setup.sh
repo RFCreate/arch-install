@@ -34,7 +34,7 @@ if ! pacman -Q yay > /dev/null 2>&1; then
 fi
 
 # Install packages inside csv file
-curl -sS -o /tmp/pkgs.csv.tmp https://raw.githubusercontent.com/RFCreate/setup/main/pkgs.csv
+curl -sS -o /tmp/pkgs.csv.tmp https://raw.githubusercontent.com/RFCreate/arch-install/main/pkgs.csv
 tail -n +2 /tmp/pkgs.csv.tmp | cut -d ',' -f -2 > /tmp/pkgs.csv
 while IFS=, read -r tag program; do
     case "$tag" in

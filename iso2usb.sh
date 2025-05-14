@@ -68,7 +68,7 @@ mount "${USB}2" "$storageDIR" || exit 1
 
 # Download next script
 echo "Copying script to USB..."
-curl -sS --output-dir "$storageDIR" -O https://raw.githubusercontent.com/RFCreate/setup/main/preinstall.sh
+curl -sS --output-dir "$storageDIR" -O https://raw.githubusercontent.com/RFCreate/arch-install/main/preinstall.sh
 chmod +x "$storageDIR/preinstall.sh"
 
 # Unmount storage partition
