@@ -21,14 +21,14 @@ Inside the bootable USB, connect to [wireless internet](https://wiki.archlinux.o
 
 ```
 iwctl
-[iwd]# device list                                # list wifi devices
-[iwd]# device  _device_  set-property Powered on  # turn on device
-[iwd]# adapter _adapter_ set-property Powered on  # turn on adapter
-[iwd]# station _device_ scan                      # scan for networks
-[iwd]# station _device_ get-networks              # list networks
-[iwd]# station _device_ connect _SSID_            # connect to network
-[iwd]# station _device_ show                      # display connection state
-[iwd]# quit                                       # exit
+[iwd]# device list                              # list wifi devices
+[iwd]# device  _name_ set-property Powered on   # turn on device
+[iwd]# adapter _name_ set-property Powered on   # turn on adapter
+[iwd]# station _name_ scan                      # scan for networks
+[iwd]# station _name_ get-networks              # list networks
+[iwd]# station _name_ connect _SSID_            # connect to network
+[iwd]# station _name_ show                      # display connection state
+[iwd]# quit                                     # exit
 ```
 
 ---
