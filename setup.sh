@@ -1,7 +1,22 @@
 #!/bin/sh
 
-# Script variables
-NEWUSER="user"
+#Define helper
+usage() {
+    echo "Usage: $0 -u <username>" 1>&2
+    exit 1
+}
+
+# Check arguments
+while getopts ":u:" opt; do
+    case $opt in
+        'u') NEWUSER="${OPTARG}" ;;
+        *) echo here ;;
+    esac
+done
+
+# Exit if username is invalid
+[ -z "$NEWUSER" ] && echo "Error: Missing username." >&2 && usage
+echo "$NEWUSER" | grep -qE '^[A-Za-z_][-A-Za-z0-9_.]*\$?$' || ! echo "Error: Username is badname." >&2 || usage
 
 # https://wiki.archlinux.org/title/Sudo#Example_entries
 # Allow wheel group to run sudo without password

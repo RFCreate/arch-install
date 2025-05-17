@@ -86,19 +86,19 @@ nmtui
 ---
 
 Run setup script[^1]<br>
-<sub>**Note:** modify script to change your username</sub>
+<sub>**Note:** specify your username after the flag</sub>
 
 ```
-/setup.sh
+/setup.sh -u username
 ```
 
 ---
 
 Set the user password<br>
-<sub>**Note:** may need change \<user\> with your username</sub>
+<sub>**Note:** replace with your username</sub>
 
 ```
-passwd user
+passwd username
 ```
 
 [^1]: Script should run as root
