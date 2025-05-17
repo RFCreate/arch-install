@@ -19,7 +19,7 @@ echo arch > /etc/hostname
 
 # https://wiki.archlinux.org/title/Installation_guide#Boot_loader
 if [ -f /sys/firmware/efi/fw_platform_size ]; then
-    pacman -S --needed --noconfirm grub efibootmgr >> /pacman.log 2>&1
+    pacman -S --needed --noconfirm grub efibootmgr 2>&1 | tee -a /pacman.log
     # https://wiki.archlinux.org/title/Installation_guide#Verify_the_boot_mode
     case "$(cat /sys/firmware/efi/fw_platform_size)" in
         # https://wiki.archlinux.org/title/GRUB#Installation
@@ -28,7 +28,7 @@ if [ -f /sys/firmware/efi/fw_platform_size ]; then
     esac
 else
     # https://wiki.archlinux.org/title/GRUB#Installation_2
-    pacman -S --needed --noconfirm grub >> /pacman.log 2>&1
+    pacman -S --needed --noconfirm grub 2>&1 | tee -a /pacman.log
     cd / && grub-install --target=i386-pc "$(findmnt --output source --noheadings --target . | sed 's/[0-9]*$//')"
 fi
 # Set time for grub menu
@@ -38,12 +38,12 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 # https://wiki.archlinux.org/title/Microcode
 # Install processor microcode update
-grep -q AuthenticAMD /proc/cpuinfo && pacman -S --needed --noconfirm amd-ucode >> /pacman.log 2>&1
-grep -q GenuineIntel /proc/cpuinfo && pacman -S --needed --noconfirm intel-ucode >> /pacman.log 2>&1
+grep -q AuthenticAMD /proc/cpuinfo && pacman -S --needed --noconfirm amd-ucode 2>&1 | tee -a /pacman.log
+grep -q GenuineIntel /proc/cpuinfo && pacman -S --needed --noconfirm intel-ucode 2>&1 | tee -a /pacman.log
 
 # https://wiki.archlinux.org/title/Broadcom_wireless#Driver_selection
 # Install Broadcom drivers if needed
-lspci -d 14e4: > /dev/null 2>&1 && pacman -S --needed --noconfirm broadcom-wl >> /pacman.log 2>&1
+lspci -d 14e4: > /dev/null 2>&1 && pacman -S --needed --noconfirm broadcom-wl 2>&1 | tee -a /pacman.log
 
 # Download next script
 curl -sS --output-dir / -O https://raw.githubusercontent.com/RFCreate/arch-install/main/setup.sh
