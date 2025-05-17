@@ -7,6 +7,7 @@ TIMEZONE="Etc/GMT+6"
 
 #Define helper
 usage() {
+    [ -n "$1" ] && echo "$1" 1>&2
     echo "Usage: $0 -d </dev/DISK>" 1>&2
     exit 1
 }
@@ -20,9 +21,9 @@ while getopts ":d:" opt; do
 done
 
 # Exit if DISK is invalid
-[ -z "$DISK" ] && echo "Error: Missing DISK device." >&2 && usage
-[ ! -b "$DISK" ] && echo "Error: DISK does not exist." >&2 && usage
-[ "$(lsblk -dno type "$DISK")" != "disk" ] && echo "Error: DISK is not disk type." >&2 && usage
+[ -z "$DISK" ] && usage "Error: Missing DISK device."
+[ ! -b "$DISK" ] && usage "Error: DISK '$DISK' does not exist."
+[ "$(lsblk -dno type "$DISK")" != "disk" ] && usage "Error: DISK '$DISK' is not disk type."
 
 # https://wiki.archlinux.org/title/Installation_guide#Set_the_console_keyboard_layout_and_font
 # Set console keyboard layout

@@ -2,6 +2,7 @@
 
 #Define helper
 usage() {
+    [ -n "$1" ] && echo "$1" 1>&2
     echo "Usage: $0 -u <username>" 1>&2
     exit 1
 }
@@ -15,8 +16,8 @@ while getopts ":u:" opt; do
 done
 
 # Exit if username is invalid
-[ -z "$NEWUSER" ] && echo "Error: Missing username." >&2 && usage
-echo "$NEWUSER" | grep -qE '^[A-Za-z_][-A-Za-z0-9_.]*\$?$' || ! echo "Error: Username is badname." >&2 || usage
+[ -z "$NEWUSER" ] && usage "Error: Missing username."
+echo "$NEWUSER" | grep -qE '^[A-Za-z_][-A-Za-z0-9_.]*\$?$' || usage "Error: Username is badname."
 
 # https://wiki.archlinux.org/title/Sudo#Example_entries
 # Allow wheel group to run sudo without password

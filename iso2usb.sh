@@ -5,6 +5,7 @@ command -v mkfs.fat > /dev/null 2>&1 || ! echo "Error: Dependency mkfs.fat not f
 
 #Define helper
 usage() {
+    [ -n "$1" ] && echo "$1" 1>&2
     echo "Usage: $0 -d </dev/USB> -i </path/to/ISO>" 1>&2
     exit 1
 }
@@ -19,14 +20,14 @@ while getopts ":d:i:" opt; do
 done
 
 # Exit if USB is invalid
-[ -z "$USB" ] && echo "Error: Missing USB device." >&2 && usage
-[ ! -b "$USB" ] && echo "Error: USB '$USB' does not exist." >&2 && usage
-[ "$(lsblk -dno type "$USB")" != "disk" ] && echo "Error: USB '$USB' is not disk type." >&2 && usage
+[ -z "$USB" ] && usage "Error: Missing USB device."
+[ ! -b "$USB" ] && usage "Error: USB '$USB' does not exist."
+[ "$(lsblk -dno type "$USB")" != "disk" ] && usage "Error: USB '$USB' is not disk type."
 
 # Exit if ISO is invalid
-[ -z "$ISO" ] && echo "Error: Missing ISO file." >&2 && usage
-[ ! -f "$ISO" ] && echo "Error: ISO '$ISO' file does not exist." >&2 && usage
-! bsdtar -Otf "$ISO" 2> /dev/null && echo "Error: ISO '$ISO' archive format." >&2 && usage
+[ -z "$ISO" ] && usage "Error: Missing ISO file."
+[ ! -f "$ISO" ] && usage "Error: ISO '$ISO' file does not exist."
+bsdtar -Otf "$ISO" 2> /dev/null || usage "Error: ISO '$ISO' archive format."
 
 # Format USB
 echo "Formatting USB..."
