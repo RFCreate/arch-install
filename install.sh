@@ -61,7 +61,7 @@ systemctl --quiet enable NetworkManager.service
 
 # https://wiki.archlinux.org/title/Broadcom_wireless#Driver_selection
 # Install Broadcom drivers if needed
-lspci -d 14e4: > /dev/null 2>&1 && pacman -S --needed --noconfirm broadcom-wl-dkms >> /pacman.log 2>&1
+lspci -d 14e4: > /dev/null 2>&1 && pacman -S --needed --noconfirm broadcom-wl >> /pacman.log 2>&1
 
 # Download next script
 curl -sS --output-dir / -O https://raw.githubusercontent.com/RFCreate/arch-install/main/setup.sh
