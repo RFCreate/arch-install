@@ -74,6 +74,16 @@ pacstrap -K /mnt base base-devel linux linux-firmware networkmanager >> /mnt/pac
 # Define disk partitions
 genfstab -U /mnt >> /mnt/etc/fstab
 
+# https://wiki.archlinux.org/title/Installation_guide#Time
+# Set time zone
+ln -sf "/usr/share/zoneinfo/$TIMEZONE" /mnt/etc/localtime
+
+# https://wiki.archlinux.org/title/Installation_guide#Localization
+# Set console keyboard layout
+echo "KEYMAP=$KEYBOARD_LAYOUT" > /mnt/etc/vconsole.conf
+# Set console font
+echo "FONT=$CONSOLE_FONT" >> /mnt/etc/vconsole.conf
+
 # Download next script
 curl -sS --output-dir /mnt -O https://raw.githubusercontent.com/RFCreate/arch-install/main/install.sh
 chmod +x /mnt/install.sh

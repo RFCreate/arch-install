@@ -1,13 +1,6 @@
 #!/bin/sh
 
-# Script variables
-CONSOLE_FONT="ter-122b"
-KEYBOARD_LAYOUT="la-latin1"
-TIMEZONE="Etc/GMT+6"
-
 # https://wiki.archlinux.org/title/Installation_guide#Time
-# Set time zone
-ln -sf "/usr/share/zoneinfo/$TIMEZONE" /etc/localtime
 # Set hardware clock
 hwclock --systohc
 # Enable system clock synchronization via network
@@ -19,10 +12,6 @@ sed -i 's/^#en_US.UTF-8/en_US.UTF-8/' /etc/locale.gen
 locale-gen
 # Set the LANG variable
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
-# Set console keyboard layout
-echo "KEYMAP=$KEYBOARD_LAYOUT" > /etc/vconsole.conf
-# Set console font
-echo "FONT=$CONSOLE_FONT" >> /etc/vconsole.conf
 
 # https://wiki.archlinux.org/title/Installation_guide#Network_configuration
 # Set hostname for network
