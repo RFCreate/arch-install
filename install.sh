@@ -52,13 +52,6 @@ grub-mkconfig -o /boot/grub/grub.cfg
 grep -q AuthenticAMD /proc/cpuinfo && pacman -S --needed --noconfirm amd-ucode >> /pacman.log 2>&1
 grep -q GenuineIntel /proc/cpuinfo && pacman -S --needed --noconfirm intel-ucode >> /pacman.log 2>&1
 
-# https://wiki.archlinux.org/title/NetworkManager#Installation
-# Add network manager
-pacman -S --needed --noconfirm networkmanager >> /pacman.log 2>&1
-# https://wiki.archlinux.org/title/NetworkManager#Enable_NetworkManager
-# Enable network manager
-systemctl --quiet enable NetworkManager.service
-
 # https://wiki.archlinux.org/title/Broadcom_wireless#Driver_selection
 # Install Broadcom drivers if needed
 lspci -d 14e4: > /dev/null 2>&1 && pacman -S --needed --noconfirm broadcom-wl >> /pacman.log 2>&1

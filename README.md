@@ -80,6 +80,7 @@ passwd
 Connect to wireless internet using [Network Manger](https://wiki.archlinux.org/title/NetworkManager#Usage)
 
 ```
+systemctl start NetworkManager.service
 nmtui
 ```
 
