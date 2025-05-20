@@ -31,7 +31,7 @@ bsdtar -Otf "$ISO" 2> /dev/null || usage "Error: ISO '$ISO' archive format."
 
 # Format USB
 echo "Formatting USB..."
-mkfs.fat -F 32 "$USB" || exit 1
+mkfs.fat -I -F 32 "$USB" || exit 1
 
 # Mount USB
 mountDIR="$(mktemp -d)"
