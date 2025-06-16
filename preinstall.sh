@@ -37,7 +37,7 @@ timedatectl set-timezone "$TIMEZONE"
 # Enable system clock synchronization via network
 timedatectl set-ntp true
 
-# Remove partition signatures
+# Remove disk signatures
 echo "Removing disk signatures..."
 wipefs --all -q "${DISK}" || exit 1
 

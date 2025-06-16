@@ -29,15 +29,23 @@ done
 [ ! -f "$ISO" ] && usage "Error: ISO '$ISO' file does not exist."
 bsdtar -Otf "$ISO" 2> /dev/null || usage "Error: ISO '$ISO' archive format."
 
+# Remove USB signatures
+echo "Removing USB signatures..."
+wipefs --all -q "${USB}" || exit 1
+
+# Partition USB
+echo "Partitioning USB..."
+printf "size=+,bootable,type=L\n" | sfdisk -q "${USB}" || exit 1
+
 # Format USB
 echo "Formatting USB..."
-mkfs.fat -I -F 32 "$USB" || exit 1
+mkfs.fat -F 32 "${USB}1" || exit 1
 
 # Mount USB
 mountDIR="$(mktemp -d)"
-mount "$USB" "$mountDIR" || exit 1
+mount "${USB}1" "$mountDIR" || exit 1
 
-# Extract iso image to USB
+# Extract ISO to USB
 echo "Copying ISO to USB..."
 bsdtar -x -f "${ISO}" -C "$mountDIR"
 
