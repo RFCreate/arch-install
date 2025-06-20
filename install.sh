@@ -46,5 +46,5 @@ grep -q GenuineIntel /proc/cpuinfo && pacman -S --needed --noconfirm intel-ucode
 lspci -d 14e4: > /dev/null 2>&1 && pacman -S --needed --noconfirm broadcom-wl 2>&1 | tee -a /pacman.log
 
 # Download next script
-curl -sS --output-dir / -O https://raw.githubusercontent.com/RFCreate/arch-install/main/setup.sh
-chmod +x /setup.sh
+curl -sS --output-dir / -O https://raw.githubusercontent.com/RFCreate/arch-install/main/postinstall.sh
+chmod +x /postinstall.sh

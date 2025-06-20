@@ -86,11 +86,11 @@ nmtui
 
 ---
 
-Run setup script[^1]<br>
+Run post-installation script[^1]<br>
 <sub>**Note:** specify your username after the flag</sub>
 
 ```
-/setup.sh -u username
+/postinstall.sh -u username
 ```
 
 ---
