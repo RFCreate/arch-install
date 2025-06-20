@@ -66,20 +66,6 @@ dotfiles checkout 2>&1 | grep "\s\s*\." | awk '{print $1}' | xargs -I {} mv {} "
 dotfiles checkout -f
 EOF
 
-# https://wiki.archlinux.org/title/PC_speaker#Globally
-# Remove beep sound
-lsmod | grep -wq pcspkr && rmmod pcspkr
-lsmod | grep -wq snd_pcsp && rmmod snd_pcsp
-echo 'blacklist pcspkr' > /etc/modprobe.d/nobeep.conf
-echo 'blacklist snd_pcsp' >> /etc/modprobe.d/nobeep.conf
-
-# https://wiki.archlinux.org/title/Power_management#ACPI_events
-# Ignore power/suspend/reboot/hibernate buttons
-sed -i 's/^#*HandlePowerKey=.*/HandlePowerKey=ignore/' /etc/systemd/logind.conf
-sed -i 's/^#*HandleRebootKey=.*/HandleRebootKey=ignore/' /etc/systemd/logind.conf
-sed -i 's/^#*HandleSuspendKey=.*/HandleSuspendKey=ignore/' /etc/systemd/logind.conf
-sed -i 's/^#*HandleHibernateKey=.*/HandleHibernateKey=ignore/' /etc/systemd/logind.conf
-
 # https://wiki.archlinux.org/title/Sudo#Sudoers_default_file_permissions
 # Reset sudoers file permissions in case of accidental change
 chown root:root /etc/sudoers

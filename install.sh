@@ -45,6 +45,20 @@ grep -q GenuineIntel /proc/cpuinfo && pacman -S --needed --noconfirm intel-ucode
 # Install Broadcom drivers if needed
 lspci -d 14e4: > /dev/null 2>&1 && pacman -S --needed --noconfirm broadcom-wl 2>&1 | tee -a /pacman.log
 
+# https://wiki.archlinux.org/title/PC_speaker#Globally
+# Remove beep sound
+lsmod | grep -wq pcspkr && rmmod pcspkr
+lsmod | grep -wq snd_pcsp && rmmod snd_pcsp
+echo 'blacklist pcspkr' > /etc/modprobe.d/nobeep.conf
+echo 'blacklist snd_pcsp' >> /etc/modprobe.d/nobeep.conf
+
+# https://wiki.archlinux.org/title/Power_management#ACPI_events
+# Ignore power/suspend/reboot/hibernate buttons
+sed -i 's/^#*HandlePowerKey=.*/HandlePowerKey=ignore/' /etc/systemd/logind.conf
+sed -i 's/^#*HandleRebootKey=.*/HandleRebootKey=ignore/' /etc/systemd/logind.conf
+sed -i 's/^#*HandleSuspendKey=.*/HandleSuspendKey=ignore/' /etc/systemd/logind.conf
+sed -i 's/^#*HandleHibernateKey=.*/HandleHibernateKey=ignore/' /etc/systemd/logind.conf
+
 # Download next script
 curl -sS --output-dir / -O https://raw.githubusercontent.com/RFCreate/arch-install/main/postinstall.sh
 chmod +x /postinstall.sh
