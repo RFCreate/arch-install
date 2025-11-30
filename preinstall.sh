@@ -5,7 +5,7 @@ CONSOLE_FONT="ter-122b"
 KEYBOARD_LAYOUT="la-latin1"
 TIMEZONE="Etc/GMT+6"
 
-#Define helper
+# Define helper
 usage() {
     [ -n "$1" ] && echo "$1" 1>&2
     echo "Usage: $0 -d </dev/DISK>" 1>&2

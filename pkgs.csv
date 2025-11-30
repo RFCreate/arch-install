@@ -61,7 +61,7 @@ A,rofi-greenclip,clipboard manager,https://wiki.archlinux.org/title/List_of_appl
 ,opendoas,sudo alternative,https://wiki.archlinux.org/title/List_of_applications/Security#Privilege_elevation
 ,zsh,interactive shell,https://wiki.archlinux.org/title/List_of_applications/Utilities#Command_shells
 ,lxterminal,terminal emulator,https://wiki.archlinux.org/title/List_of_applications/Utilities#Terminal_emulators
-,pcmanfm-gtk3,GUI file manager,https://wiki.archlinux.org/title/List_of_applications/Utilities#File_managers
+,pcmanfm,GUI file manager,https://wiki.archlinux.org/title/List_of_applications/Utilities#File_managers
 ,gvfs,mount support and trash functionality,https://wiki.archlinux.org/title/List_of_applications/Utilities#Trash_management
 ,syncthing,file synchronization,https://wiki.archlinux.org/title/List_of_applications/Utilities#File_synchronization_and_backup
 ,xarchiver,archive manager,https://wiki.archlinux.org/title/List_of_applications/Utilities#Archiving_and_compression_tools

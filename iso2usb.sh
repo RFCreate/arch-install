@@ -3,7 +3,7 @@
 # Check if formatter commands exists
 command -v mkfs.fat > /dev/null 2>&1 || ! echo "Error: Dependency mkfs.fat not found" >&2 || exit 1
 
-#Define helper
+# Define helper
 usage() {
     [ -n "$1" ] && echo "$1" 1>&2
     echo "Usage: $0 -d </dev/USB> -i </path/to/ISO>" 1>&2

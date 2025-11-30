@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#Define helper
+# Define helper
 usage() {
     [ -n "$1" ] && echo "$1" 1>&2
     echo "Usage: $0 -u <username>" 1>&2
