@@ -73,7 +73,7 @@ chmod 0440 /etc/sudoers
 
 # https://wiki.archlinux.org/title/Doas#Configuration
 # Allow members of group wheel to run root commands
-echo 'permit setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin} :wheel' > /etc/doas.conf
+echo 'permit persist setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin} :wheel' > /etc/doas.conf
 chown root:root /etc/doas.conf
 chmod 0400 /etc/doas.conf
 
