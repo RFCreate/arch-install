@@ -42,13 +42,10 @@ A,shellcheck-bin,shell script linter,
 ,networkmanager,network manager,https://wiki.archlinux.org/title/List_of_applications/Internet#Network_managers
 ,firefox,web browser,https://wiki.archlinux.org/title/List_of_applications/Internet#Web_browsers
 ,imv,image viewer,https://wiki.archlinux.org/title/List_of_applications/Multimedia#Image_viewers
-,gimp,image editor,https://wiki.archlinux.org/title/List_of_applications/Multimedia#Raster_graphics_editors
 ,maim,screenshot tool,https://wiki.archlinux.org/title/List_of_applications/Multimedia#Screenshot
 ,pipewire,sound system,https://wiki.archlinux.org/title/List_of_applications/Multimedia#Audio_systems
 ,pulsemixer,sound mixer,https://wiki.archlinux.org/title/List_of_applications/Multimedia#Volume_control
 ,mpv,video player,https://wiki.archlinux.org/title/List_of_applications/Multimedia#Video_players
-,shotcut,video editor,https://wiki.archlinux.org/title/List_of_applications/Multimedia#Video_editors
-,obs-studio,screen recorder,https://wiki.archlinux.org/title/List_of_applications/Multimedia#Screencast
 ,greetd-tuigreet,display manager,https://wiki.archlinux.org/title/List_of_applications/Other#Display_managers
 ,qtile,window manager,https://wiki.archlinux.org/title/List_of_applications/Other#Window_managers
 ,rofi,application launcher,https://wiki.archlinux.org/title/List_of_applications/Other#Application_launchers
