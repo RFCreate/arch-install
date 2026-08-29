@@ -32,7 +32,7 @@ else
     cd / && grub-install --target=i386-pc "$(findmnt --output source --noheadings --target . | sed 's/[0-9]*$//')"
 fi
 # Set time for grub menu
-sed -i 's/GRUB_TIMEOUT=.*/GRUB_TIMEOUT=5/' /etc/default/grub
+sed -i 's/GRUB_TIMEOUT=.*/GRUB_TIMEOUT=10/' /etc/default/grub
 # https://wiki.archlinux.org/title/GRUB#Generate_the_main_configuration_file
 grub-mkconfig -o /boot/grub/grub.cfg
 

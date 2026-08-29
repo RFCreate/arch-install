@@ -1,5 +1,4 @@
 Tag,Package,Description,URL
-,terminus-font,console font,https://wiki.archlinux.org/title/Linux_console#Fonts
 ,ttf-dejavu,ttf-font provider,
 ,ttf-hack-nerd,ttf-font-nerd provider,
 ,man-db,man command,https://wiki.archlinux.org/title/Man_page#Installation
