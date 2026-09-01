@@ -48,7 +48,7 @@
 
 > polkit-gnome
 
-### [Ttext editor](https://wiki.archlinux.org/title/List_of_applications/Documents#Text_editors)
+### [Text editor](https://wiki.archlinux.org/title/List_of_applications/Documents#Text_editors)
 
 > micro
 
@@ -106,7 +106,7 @@
 
 ### [Clipboard manager](https://wiki.archlinux.org/title/List_of_applications/Other#Clipboard_managers)
 
-> clipcat
+> clipcat xclip
 
 ### [Calculator](https://wiki.archlinux.org/title/List_of_applications/Science#Calculator)
 
@@ -118,7 +118,7 @@
 
 ### [Screen locker](https://wiki.archlinux.org/title/List_of_applications/Security#Screen_lockers)
 
-> i3lock
+> i3lock xss-lock xorg-xset
 
 ### [Password manager](https://wiki.archlinux.org/title/List_of_applications/Security#Password_managers)
 
@@ -178,4 +178,4 @@
 
 ### Xorg
 
-> xorg-server xorg-xinit xorg-xset xorg-setxkbmap xorg-xinput xss-lock xclip numlockx arandr
+> xorg-server xorg-xinit xorg-setxkbmap xorg-xinput arandr
