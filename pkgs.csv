@@ -49,7 +49,7 @@ A,shellcheck-bin,shell script linter,
 ,qtile,window manager,https://wiki.archlinux.org/title/List_of_applications/Other#Window_managers
 ,rofi,application launcher,https://wiki.archlinux.org/title/List_of_applications/Other#Application_launchers
 ,dunst,notification daemon,https://wiki.archlinux.org/title/List_of_applications/Other#Desktop_notifications
-A,rofi-greenclip,clipboard manager,https://wiki.archlinux.org/title/List_of_applications/Other#Clipboard_managers
+,clipcat,clipboard manager,https://wiki.archlinux.org/title/List_of_applications/Other#Clipboard_managers
 ,galculator,calculator,https://wiki.archlinux.org/title/List_of_applications/Science#Calculator
 ,ufw,firewall manager,https://wiki.archlinux.org/title/List_of_applications/Security#Firewall_management
 ,i3lock,screen locker,https://wiki.archlinux.org/title/List_of_applications/Security#Screen_lockers
