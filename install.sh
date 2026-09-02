@@ -60,5 +60,5 @@ sed -i 's/^#*HandleSuspendKey=.*/HandleSuspendKey=ignore/' /etc/systemd/logind.c
 sed -i 's/^#*HandleHibernateKey=.*/HandleHibernateKey=ignore/' /etc/systemd/logind.conf
 
 # Download next script
-curl -sS --output-dir / -O https://raw.githubusercontent.com/RFCreate/arch-install/main/postinstall.sh
+curl -fsSLO --output-dir / https://raw.githubusercontent.com/RFCreate/arch-install/main/postinstall.sh
 chmod +x /postinstall.sh

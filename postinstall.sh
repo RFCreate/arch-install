@@ -19,40 +19,13 @@ done
 [ -z "$NEWUSER" ] && usage "Error: Missing username."
 echo "$NEWUSER" | grep -qE '^[A-Za-z_][-A-Za-z0-9_.]*\$?$' || usage "Error: Username is badname."
 
-# https://wiki.archlinux.org/title/Sudo#Example_entries
-# Allow wheel group to run sudo without password
-sed -i 's/^# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/' /etc/sudoers
-sed -i 's/^%wheel ALL=(ALL:ALL) ALL/# %wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
+# Install packages
+curl -fsSLO --output-dir /tmp https://raw.githubusercontent.com/RFCreate/arch-install/main/pkgs.md || exit 1
+grep '^>\s*' /tmp/pkgs.md | sed 's/^>\s*//' | xargs --no-run-if-empty pacman -S --needed --noconfirm 2>&1 | tee -a /pacman.log
 
 # https://wiki.archlinux.org/title/Users_and_groups#User_management
 # Add new user
-id -u "$NEWUSER" > /dev/null 2>&1 || useradd -mk "" -G wheel "$NEWUSER"
-
-# https://github.com/Jguer/yay#Installation
-# Install yay from AUR
-if ! pacman -Q yay > /dev/null 2>&1; then
-    curl -sS --output-dir /tmp -L -O https://aur.archlinux.org/cgit/aur.git/snapshot/yay-bin.tar.gz
-    runuser -l "$NEWUSER" -c "tar -C /tmp -xf /tmp/yay-bin.tar.gz && makepkg -si --needed --noconfirm -D /tmp/yay-bin" 2>&1 | tee -a /yay.log
-fi
-
-# Install packages inside csv file
-curl -sS -o /tmp/pkgs.csv.tmp https://raw.githubusercontent.com/RFCreate/arch-install/main/pkgs.csv
-tail -n +2 /tmp/pkgs.csv.tmp | cut -d ',' -f -2 > /tmp/pkgs.csv
-while IFS=, read -r tag program; do
-    case "$tag" in
-        "A") runuser -l "$NEWUSER" -c "yay -S --needed --noconfirm $program" 2>&1 | tee -a /yay.log ;;
-        *) pacman -S --needed --noconfirm "$program" 2>&1 | tee -a /pacman.log ;;
-    esac
-done < /tmp/pkgs.csv
-
-# https://wiki.archlinux.org/title/Sudo#Example_entries
-# Allow wheel to run sudo entering password
-sed -i 's/^%wheel ALL=(ALL:ALL) NOPASSWD: ALL/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/' /etc/sudoers
-sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
-
-# https://wiki.archlinux.org/title/Command-line_shell#Changing_your_default_shell
-# Change new user default shell
-[ "$(getent passwd "$NEWUSER" | awk -F: '{print $NF}')" = "/usr/bin/zsh" ] || chsh -s /usr/bin/zsh "$NEWUSER" > /dev/null
+id -u "$NEWUSER" > /dev/null 2>&1 || useradd -mk "" -G wheel -s /usr/bin/zsh "$NEWUSER"
 
 # https://wiki.archlinux.org/title/Dotfiles#Tracking_dotfiles_directly_with_Git
 # Copy dotfiles from repo to HOME

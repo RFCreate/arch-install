@@ -86,5 +86,5 @@ echo "KEYMAP=$KEYBOARD_LAYOUT" > /mnt/etc/vconsole.conf
 echo "FONT=$CONSOLE_FONT" >> /mnt/etc/vconsole.conf
 
 # Download next script
-curl -sS --output-dir /mnt -O https://raw.githubusercontent.com/RFCreate/arch-install/main/install.sh
+curl -fsSLO --output-dir /mnt https://raw.githubusercontent.com/RFCreate/arch-install/main/install.sh
 chmod +x /mnt/install.sh

@@ -51,7 +51,7 @@ bsdtar -x -f "${ISO}" -C "$mountDIR"
 
 # Download script to USB
 echo "Copying script to USB..."
-curl -sS --output-dir "$mountDIR" -O https://raw.githubusercontent.com/RFCreate/arch-install/main/preinstall.sh
+curl -fsSLO --output-dir "$mountDIR" https://raw.githubusercontent.com/RFCreate/arch-install/main/preinstall.sh
 chmod +x "$mountDIR/preinstall.sh"
 
 # Unmount USB
