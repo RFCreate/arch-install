@@ -4,6 +4,10 @@
 
 > ttf-dejavu ttf-hack-nerd
 
+### Manuals
+
+> man-db man-pages
+
 ### Bash
 
 > bash bash-completion
@@ -16,37 +20,15 @@
 
 > starship
 
-### [Manual pages](https://wiki.archlinux.org/title/Man_page#Installation)
+### Core utilities alternatives
 
-> man-db man-pages
+> bat fzf ripgrep
 
-### [Archiving and compression](https://wiki.archlinux.org/title/Archiving_and_compression#Archiving_and_compression)
-
-> zip unzip
-
-### [Core utilities alternatives](https://wiki.archlinux.org/title/Core_utilities#Alternatives)
-
-> bat fzf
-
-### [Printer](https://wiki.archlinux.org/title/CUPS#Installation)
-
-> cups cups-pdf usbutils avahi nss-mdns system-config-printer
-
-### [Audio](https://wiki.archlinux.org/title/PipeWire#Installation)
+### Audio
 
 > pipewire wireplumber pipewire-audio pipewire-alsa pipewire-pulse pipewire-jack
 
-### [Networking](https://wiki.archlinux.org/title/NetworkManager#Installation)
-
-> networkmanager network-manager-applet
-
-### [Keyring](https://wiki.archlinux.org/title/GNOME/Keyring#Installation)
-
-> gnome-keyring
-
-### [Authentication agent](https://wiki.archlinux.org/title/Polkit#Authentication_agents)
-
-> polkit-gnome
+---
 
 ### [Text editor](https://wiki.archlinux.org/title/List_of_applications/Documents#Text_editors)
 
@@ -67,6 +49,10 @@
 ### [Spell checker](https://wiki.archlinux.org/title/List_of_applications/Documents#Spell_checkers)
 
 > hunspell hunspell-en_us
+
+### [Network manager](https://wiki.archlinux.org/title/List_of_applications/Internet#Network_managers)
+
+> networkmanager network-manager-applet
 
 ### [Web browser](https://wiki.archlinux.org/title/List_of_applications/Internet#Web_browsers)
 
@@ -122,11 +108,11 @@
 
 ### [Password manager](https://wiki.archlinux.org/title/List_of_applications/Security#Password_managers)
 
-> keepassxc
+> keepassxc gnome-keyring
 
 ### [Privilege elevation](https://wiki.archlinux.org/title/List_of_applications/Security#Privilege_elevation)
 
-> opendoas
+> opendoas polkit-gnome
 
 ### [Terminal emulator](https://wiki.archlinux.org/title/List_of_applications/Utilities#Terminal_emulators)
 
@@ -134,15 +120,7 @@
 
 ### [File manager](https://wiki.archlinux.org/title/List_of_applications/Utilities#File_managers)
 
-> pcmanfm
-
-### [Mount support](https://wiki.archlinux.org/title/File_manager_functionality#Mounting)
-
-> gvfs gvfs-mtp
-
-### [Thumbnailer](https://wiki.archlinux.org/title/File_manager_functionality#Thumbnail_previews)
-
-> webp-pixbuf-loader ffmpegthumbnailer imagemagick libgsf
+> pcmanfm gvfs gvfs-mtp webp-pixbuf-loader ffmpegthumbnailer imagemagick libgsf
 
 ### [File synchronization](https://wiki.archlinux.org/title/List_of_applications/Utilities#File_synchronization_and_backup)
 
@@ -150,7 +128,7 @@
 
 ### [Archive manager](https://wiki.archlinux.org/title/List_of_applications/Utilities#Archiving_and_compression_tools)
 
-> xarchiver
+> xarchiver zip unzip
 
 ### [Batch renamer](https://wiki.archlinux.org/title/List_of_applications/Utilities#Batch_renamers)
 
@@ -164,17 +142,21 @@
 
 > code
 
-### [Terminal task manager](https://wiki.archlinux.org/title/List_of_applications/Utilities#System_monitors)
+### [Task manager](https://wiki.archlinux.org/title/List_of_applications/Utilities#System_monitors)
 
 > btop
 
-### [Control screen brightness](https://wiki.archlinux.org/title/List_of_applications/Utilities#Backlight_management)
+### [Screen brightness](https://wiki.archlinux.org/title/List_of_applications/Utilities#Backlight_management)
 
 > brightnessctl
 
-### [Screen color temperature adjuster](https://wiki.archlinux.org/title/List_of_applications/Utilities#Color_management)
+### [Screen color](https://wiki.archlinux.org/title/List_of_applications/Utilities#Color_management)
 
 > redshift
+
+### [Printer management](https://wiki.archlinux.org/title/List_of_applications/Utilities#Printer_management)
+
+> cups cups-pdf usbutils avahi nss-mdns system-config-printer
 
 ### Xorg
 
