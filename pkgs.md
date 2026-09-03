@@ -8,25 +8,25 @@
 
 > man-db man-pages
 
-### Bash
+### Audio
 
-> bash bash-completion
+> pipewire wireplumber pipewire-audio pipewire-alsa pipewire-pulse pipewire-jack
 
-### Zsh
+### Shell completion
 
-> zsh zsh-completions zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search
+> bash-completion zsh-completions
 
-### Prompt
+### Zsh plugins
 
-> starship
+> zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search
 
 ### Core utilities alternatives
 
 > bat fzf ripgrep
 
-### Audio
+### Custom prompt
 
-> pipewire wireplumber pipewire-audio pipewire-alsa pipewire-pulse pipewire-jack
+> starship
 
 ---
 
@@ -62,11 +62,11 @@
 
 > imv
 
-### [Screenshot tool](https://wiki.archlinux.org/title/List_of_applications/Multimedia#Screenshot)
+### [Screenshot](https://wiki.archlinux.org/title/List_of_applications/Multimedia#Screenshot)
 
 > maim xdotool
 
-### [Sound mixer](https://wiki.archlinux.org/title/List_of_applications/Multimedia#Volume_control)
+### [Volume control](https://wiki.archlinux.org/title/List_of_applications/Multimedia#Volume_control)
 
 > pulsemixer
 
@@ -86,7 +86,7 @@
 
 > rofi
 
-### [Notification daemon](https://wiki.archlinux.org/title/List_of_applications/Other#Desktop_notifications)
+### [Notification manager](https://wiki.archlinux.org/title/List_of_applications/Other#Desktop_notifications)
 
 > dunst
 
