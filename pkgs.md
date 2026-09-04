@@ -4,7 +4,7 @@
 
 > ttf-dejavu ttf-hack-nerd
 
-### Manuals
+### Man pages
 
 > man-db man-pages
 
@@ -22,7 +22,7 @@
 
 ### Core utilities alternatives
 
-> bat fzf ripgrep
+> bat fd fzf ripgrep
 
 ### Custom prompt
 
