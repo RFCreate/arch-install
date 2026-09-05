@@ -50,10 +50,6 @@ echo 'permit persist setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/s
 chown root:root /etc/doas.conf
 chmod 0400 /etc/doas.conf
 
-# https://wiki.archlinux.org/title/NetworkManager#Enable_NetworkManager
-# Enable network manager
-systemctl --quiet enable NetworkManager.service
-
 # https://wiki.archlinux.org/title/Greetd#Starting_greetd
 # Enable greetd
 systemctl --quiet enable greetd.service

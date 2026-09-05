@@ -43,7 +43,7 @@ grep -q GenuineIntel /proc/cpuinfo && pacman -S --needed --noconfirm intel-ucode
 
 # https://wiki.archlinux.org/title/Broadcom_wireless#Driver_selection
 # Install Broadcom drivers if needed
-lspci -d 14e4: > /dev/null 2>&1 && pacman -S --needed --noconfirm broadcom-wl 2>&1 | tee -a /pacman.log
+[ -n "$(lspci -d 14e4:)" ] && pacman -S --needed --noconfirm broadcom-wl 2>&1 | tee -a /pacman.log
 
 # https://wiki.archlinux.org/title/PC_speaker#Globally
 # Remove beep sound
@@ -58,6 +58,10 @@ sed -i 's/^#*HandlePowerKey=.*/HandlePowerKey=ignore/' /etc/systemd/logind.conf
 sed -i 's/^#*HandleRebootKey=.*/HandleRebootKey=ignore/' /etc/systemd/logind.conf
 sed -i 's/^#*HandleSuspendKey=.*/HandleSuspendKey=ignore/' /etc/systemd/logind.conf
 sed -i 's/^#*HandleHibernateKey=.*/HandleHibernateKey=ignore/' /etc/systemd/logind.conf
+
+# https://wiki.archlinux.org/title/NetworkManager#Enable_NetworkManager
+# Enable network manager
+systemctl --quiet enable NetworkManager.service
 
 # Download next script
 curl -fsSLO --output-dir / https://raw.githubusercontent.com/RFCreate/arch-install/main/postinstall.sh

@@ -47,7 +47,7 @@ mount /dev/USB1 /root/usb
 [Change root into new system](https://wiki.archlinux.org/title/Installation_guide#Chroot)
 
 ```
-arch-chroot /mnt
+arch-chroot -S /mnt
 ```
 
 ---
@@ -80,7 +80,6 @@ passwd
 Connect to wireless internet using [Network Manger](https://wiki.archlinux.org/title/NetworkManager#Usage)
 
 ```
-systemctl start NetworkManager.service
 nmtui
 ```
 
