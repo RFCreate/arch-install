@@ -69,7 +69,7 @@ swapon "${DISK}2"
 # https://wiki.archlinux.org/title/Installation_guide#Install_essential_packages
 # Install packages in new system
 echo "Installing packages to new system..."
-pacstrap -K /mnt base base-devel linux linux-firmware networkmanager "$FONT_PACKAGE" 2>&1 | tee -a /mnt/pacstrap.log
+pacstrap -K /mnt base base-devel linux linux-firmware "$FONT_PACKAGE" 2>&1 | tee -a /mnt/pacstrap.log
 
 # https://wiki.archlinux.org/title/Installation_guide#Fstab
 # Define disk partitions

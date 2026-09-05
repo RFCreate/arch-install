@@ -16,6 +16,9 @@ echo "LANG=en_US.UTF-8" > /etc/locale.conf
 # https://wiki.archlinux.org/title/Installation_guide#Network_configuration
 # Set hostname for network
 echo arch > /etc/hostname
+# Install and enable network manager
+pacman -S --needed --noconfirm networkmanager 2>&1 | tee -a /pacman.log
+systemctl --quiet enable NetworkManager.service
 
 # https://wiki.archlinux.org/title/Installation_guide#Boot_loader
 if [ -f /sys/firmware/efi/fw_platform_size ]; then
@@ -58,10 +61,6 @@ sed -i 's/^#*HandlePowerKey=.*/HandlePowerKey=ignore/' /etc/systemd/logind.conf
 sed -i 's/^#*HandleRebootKey=.*/HandleRebootKey=ignore/' /etc/systemd/logind.conf
 sed -i 's/^#*HandleSuspendKey=.*/HandleSuspendKey=ignore/' /etc/systemd/logind.conf
 sed -i 's/^#*HandleHibernateKey=.*/HandleHibernateKey=ignore/' /etc/systemd/logind.conf
-
-# https://wiki.archlinux.org/title/NetworkManager#Enable_NetworkManager
-# Enable network manager
-systemctl --quiet enable NetworkManager.service
 
 # Download next script
 curl -fsSLO --output-dir / https://raw.githubusercontent.com/RFCreate/arch-install/main/postinstall.sh
