@@ -1,6 +1,15 @@
 #!/bin/sh
 
+# Script variables
+# (if you replace them in preinstall.sh it will reflect here automatically)
+FONT_PACKAGE="terminus-font"
+CONSOLE_FONT="ter-122b"
+KEYBOARD_MAP="la-latin1"
+TIMEZONE="Etc/GMT+6"
+
 # https://wiki.archlinux.org/title/Installation_guide#Time
+# Set time zone
+ln -sf "/usr/share/zoneinfo/$TIMEZONE" /etc/localtime
 # Set hardware clock
 hwclock --systohc
 # Enable system clock synchronization via network
@@ -12,12 +21,20 @@ sed -i 's/^#en_US.UTF-8/en_US.UTF-8/' /etc/locale.gen
 locale-gen
 # Set the LANG variable
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
+# Set console keyboard layout
+echo "KEYMAP=$KEYBOARD_MAP" > /etc/vconsole.conf
+
+# https://wiki.archlinux.org/title/Linux_console#Persistent_configuration
+# Iinstall console font
+pacman -S --needed --noconfirm "$FONT_PACKAGE" 2>&1 | tee -a /pacman.log
+# Set console font
+echo "FONT=$CONSOLE_FONT" >> /etc/vconsole.conf
 
 # https://wiki.archlinux.org/title/Installation_guide#Network_configuration
 # Set hostname for network
 echo arch > /etc/hostname
 # Install and enable network manager
-pacman -S --needed --noconfirm networkmanager 2>&1 | tee -a /pacman.log
+pacman -S --needed --noconfirm networkmanager network-manager-applet 2>&1 | tee -a /pacman.log
 systemctl --quiet enable NetworkManager.service
 
 # https://wiki.archlinux.org/title/Installation_guide#Boot_loader

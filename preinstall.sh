@@ -3,7 +3,7 @@
 # Script variables
 FONT_PACKAGE="terminus-font"
 CONSOLE_FONT="ter-122b"
-KEYBOARD_LAYOUT="la-latin1"
+KEYBOARD_MAP="la-latin1"
 TIMEZONE="Etc/GMT+6"
 
 # Define helper
@@ -28,7 +28,7 @@ done
 
 # https://wiki.archlinux.org/title/Installation_guide#Set_the_console_keyboard_layout_and_font
 # Set console keyboard layout
-loadkeys "$KEYBOARD_LAYOUT"
+loadkeys "$KEYBOARD_MAP"
 # Set console font
 setfont "$CONSOLE_FONT"
 
@@ -69,22 +69,16 @@ swapon "${DISK}2"
 # https://wiki.archlinux.org/title/Installation_guide#Install_essential_packages
 # Install packages in new system
 echo "Installing packages to new system..."
-pacstrap -K /mnt base base-devel linux linux-firmware "$FONT_PACKAGE" 2>&1 | tee -a /mnt/pacstrap.log
+pacstrap -K /mnt base base-devel linux linux-firmware 2>&1 | tee -a /mnt/pacstrap.log
 
 # https://wiki.archlinux.org/title/Installation_guide#Fstab
 # Define disk partitions
 genfstab -U /mnt >> /mnt/etc/fstab
 
-# https://wiki.archlinux.org/title/Installation_guide#Time
-# Set time zone
-ln -sf "/usr/share/zoneinfo/$TIMEZONE" /mnt/etc/localtime
-
-# https://wiki.archlinux.org/title/Installation_guide#Localization
-# Set console keyboard layout
-echo "KEYMAP=$KEYBOARD_LAYOUT" > /mnt/etc/vconsole.conf
-# Set console font
-echo "FONT=$CONSOLE_FONT" >> /mnt/etc/vconsole.conf
-
 # Download next script
 curl -fsSLO --output-dir /mnt https://raw.githubusercontent.com/RFCreate/arch-install/main/install.sh
 chmod +x /mnt/install.sh
+sed -i "s/^FONT_PACKAGE=.*/FONT_PACKAGE=\"$FONT_PACKAGE\"/" /mnt/install.sh
+sed -i "s/^CONSOLE_FONT=.*/CONSOLE_FONT=\"$CONSOLE_FONT\"/" /mnt/install.sh
+sed -i "s/^KEYBOARD_MAP=.*/KEYBOARD_MAP=\"$KEYBOARD_MAP\"/" /mnt/install.sh
+sed -i "s/^TIMEZONE=.*/TIMEZONE=\"$TIMEZONE\"/" /mnt/install.sh

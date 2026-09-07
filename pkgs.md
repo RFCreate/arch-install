@@ -50,10 +50,6 @@
 
 > hunspell hunspell-en_us
 
-### [Network manager](https://wiki.archlinux.org/title/List_of_applications/Internet#Network_managers)
-
-> networkmanager network-manager-applet
-
 ### [Web browser](https://wiki.archlinux.org/title/List_of_applications/Internet#Web_browsers)
 
 > firefox
