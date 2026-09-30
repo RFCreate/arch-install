@@ -26,6 +26,12 @@ done
 [ ! -b "$DISK" ] && usage "Error: DISK '$DISK' does not exist."
 [ "$(lsblk -dno type "$DISK")" != "disk" ] && usage "Error: DISK '$DISK' is not disk type."
 
+# Use partition prefix if disk ends in digit
+case "$DISK" in
+    *[0-9]) PARTITION="${DISK}p" ;;
+    *) PARTITION="$DISK" ;;
+esac
+
 # https://wiki.archlinux.org/title/Installation_guide#Set_the_console_keyboard_layout_and_font
 # Set console keyboard layout
 loadkeys "$KEYBOARD_MAP"
@@ -50,30 +56,37 @@ printf "size=+1G,type=L\nsize=+5G,type=L\nsize=+,type=L\n" | sfdisk -q "${DISK}"
 # https://wiki.archlinux.org/title/Installation_guide#Format_the_partitions
 # Format root partition
 echo "Formatting root partition..."
-mkfs.ext4 -q -F "${DISK}3"
+ENCRYPT_NAME="cryptroot"
+ENCRYPT_DEVICE="/dev/mapper/cryptroot"
+printf "root-password" | cryptsetup luksFormat -q -d - "${PARTITION}3" || exit 1
+printf "root-password" | cryptsetup open -d - "${PARTITION}3" "$ENCRYPT_NAME" || exit 1
+mkfs.ext4 -q -F "$ENCRYPT_DEVICE" || exit 1
 # Format boot partition
 echo "Formatting boot partition..."
-mkfs.fat -F 32 "${DISK}1"
+mkfs.fat -F 32 "${PARTITION}1" || exit 1
 # Format swap partition
 echo "Formatting swap partition..."
-mkswap -q "${DISK}2"
+mkswap -q "${PARTITION}2" || exit 1
 
 # https://wiki.archlinux.org/title/Installation_guide#Mount_the_file_systems
 # Mount root volume
-mount "${DISK}3" /mnt
+mount "$ENCRYPT_DEVICE" /mnt || exit 1
 # Mount boot partition
-mount --mkdir "${DISK}1" /mnt/boot
+mount --mkdir "${PARTITION}1" /mnt/boot || exit 1
 # Enable swap partition
-swapon "${DISK}2"
+swapon "${PARTITION}2" || exit 1
 
 # https://wiki.archlinux.org/title/Installation_guide#Install_essential_packages
 # Install packages in new system
 echo "Installing packages to new system..."
-pacstrap -K /mnt base base-devel linux linux-firmware 2>&1 | tee -a /mnt/pacstrap.log
+pacstrap -K /mnt base base-devel linux linux-firmware cryptsetup 2>&1 | tee -a /mnt/pacstrap.log
 
 # https://wiki.archlinux.org/title/Installation_guide#Fstab
 # Define disk partitions
 genfstab -U /mnt >> /mnt/etc/fstab
+
+# Save UUID of the encrypted root partition
+blkid "${PARTITION}3" -o value -s UUID > /mnt/cryptroot-uuid.txt
 
 # Download next script
 curl -fsSLO --output-dir /mnt https://raw.githubusercontent.com/RFCreate/arch-install/main/install.sh

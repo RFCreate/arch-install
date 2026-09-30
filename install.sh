@@ -42,6 +42,15 @@ echo arch > /etc/hostname
 pacman_install networkmanager network-manager-applet
 systemctl --quiet enable NetworkManager.service
 
+# https://wiki.archlinux.org/title/Installation_guide#Initramfs
+# Duplicate the HOOKS line to save the original HOOKS line
+sed -i '/^HOOKS=.*/p' /etc/mkinitcpio.conf
+sed -i '0,/^HOOKS=/ s/^HOOKS=.*/# &/' /etc/mkinitcpio.conf
+# Update the HOOKS line with encryption support
+sed -i 's/^HOOKS=.*/HOOKS=(base systemd autodetect microcode modconf kms keyboard sd-vconsole block sd-encrypt filesystems fsck)/' /etc/mkinitcpio.conf
+# Regenerate initramfs
+mkinitcpio -P
+
 # https://wiki.archlinux.org/title/Installation_guide#Boot_loader
 if [ -f /sys/firmware/efi/fw_platform_size ]; then
     pacman_install grub efibootmgr
@@ -56,6 +65,9 @@ else
     pacman_install grub
     cd / && grub-install --target=i386-pc "$(findmnt --output source --noheadings --target . | sed 's/[0-9]*$//')"
 fi
+# Set encrypted device in grub
+ENCRYPT_UUID="$(cat /cryptroot-uuid.txt)"
+sed -i "s|^GRUB_CMDLINE_LINUX=.*|GRUB_CMDLINE_LINUX=\"rd.luks.name=${ENCRYPT_UUID}=cryptroot root=/dev/mapper/cryptroot\"|" /etc/default/grub
 # Set time for grub menu
 sed -i 's/GRUB_TIMEOUT=.*/GRUB_TIMEOUT=10/' /etc/default/grub
 # https://wiki.archlinux.org/title/GRUB#Generate_the_main_configuration_file

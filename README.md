@@ -69,11 +69,30 @@ passwd
 
 ---
 
+Exit chroot
+
+```
+exit
+umount -R /mnt
+```
+
+---
+
+Change the encrypted device password, default is `root-password`
+
+```
+lsblk
+cryptsetup close cryptroot
+cryptsetup luksChangeKey /dev/PARTITION
+```
+
+---
+
 [Reboot the system](https://wiki.archlinux.org/title/Installation_guide#Reboot)
 
-1. Exit chroot: `exit`
-2. Unmount disk: `umount -R /mnt`
-3. Reboot system: `reboot`
+```
+reboot
+```
 
 ---
 
