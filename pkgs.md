@@ -22,7 +22,7 @@
 
 ### Core utilities alternatives
 
-> bat fd fzf ripgrep
+> bat fd fzf ripgrep zoxide
 
 ### Custom prompt
 
