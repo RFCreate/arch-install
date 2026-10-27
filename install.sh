@@ -80,7 +80,7 @@ grep -q GenuineIntel /proc/cpuinfo && pacman_install intel-ucode
 
 # https://wiki.archlinux.org/title/Broadcom_wireless#Driver_selection
 # Install Broadcom drivers if needed
-[ -n "$(lspci -d 14e4:)" ] && pacman_install broadcom-wl
+[ -n "$(lspci -d 14e4:)" ] && pacman_install broadcom-wl-dkms linux-headers
 
 # https://wiki.archlinux.org/title/PC_speaker#Globally
 # Remove beep sound
